@@ -1,0 +1,89 @@
+.member-details {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff0f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  color: #333;
+}
+
+/* レイアウトを横並びにする */
+.member-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.member-image img {
+  width: 100%;
+  max-width: 360px;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-details h1 {
+  font-size: 2rem;
+  color: #c84e74;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #f19db5;
+  padding-bottom: 0.3rem;
+}
+
+.furigana {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.info p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.extra-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.penlight {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.penlight .rounded {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+a {
+  color: #d85c85;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* PC画面では横並び */
+@media screen and (min-width: 768px) {
+  .member-flex {
+    flex-direction: row;
+  }
+
+  .member-image {
+    flex: 0 0 360px;
+  }
+
+  .member-info {
+    flex: 1;
+  }
+}

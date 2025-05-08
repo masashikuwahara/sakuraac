@@ -30,7 +30,7 @@ $member_blog = $mem['blog'];
 ?>
 <?php include('partial/top.php') ?>
 
-<link rel="stylesheet" href="css/memberdetails.css">
+<link rel="stylesheet" href="css/memberdetail.css">
 <title><?php echo $member_name;?></title>
 
 <?php require('partial/header.php'); ?>
@@ -70,7 +70,7 @@ $member_blog = $mem['blog'];
         <p>身長：<?php echo $member_height; ?>cm</p>
         <p>血液型：<?php echo $member_blood; ?></p>
         <p>出身地：<?php echo $member_birthplace; ?></p>
-        <p>期生：<?php echo $member_grade; ?></p>
+        <p>加入：<?php echo $member_grade; ?></p>
       </div>
 
       <div class="penlight">
@@ -87,7 +87,4 @@ $member_blog = $mem['blog'];
     </div>
   </div>
 </div>
-
-
-
   <?php require('partial/footer.php'); ?>

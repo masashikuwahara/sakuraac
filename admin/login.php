@@ -24,7 +24,5 @@
       <input class="btn" type="submit" value="ログイン">
     </form>
   </main>
-  <?php include("partial/footer.php") ?>
   <script src="login.js"></script>
-</body>
-</html>
+  <?php include("partial/footer.php") ?>

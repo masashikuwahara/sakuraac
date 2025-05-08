@@ -54,7 +54,7 @@
 
           foreach ($members as $rec) {
             echo '<div class="member-card">';
-            echo '<a href="memberdetails.php?id=' . $rec['id'] . '">';
+            echo '<a href="memberdetail.php?id=' . $rec['id'] . '">';
             if ($rec['image'] !== '') {
               echo '<img src="images/' . htmlspecialchars($rec['image']) . '" alt="' . htmlspecialchars($rec['name']) . '">';
             }
@@ -97,5 +97,3 @@
 <script src="script/sort.js"></script>
 
 <?php include('partial/footer.php') ?>
-</body>
-</html>

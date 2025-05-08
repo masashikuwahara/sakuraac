@@ -18,5 +18,3 @@ session();
     </div>
 </main>
 <?php include("../partial/footer.php") ?>
-</body>
-</html>

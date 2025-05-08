@@ -65,5 +65,3 @@ $member_imageold = $mem['image'];
             </form>
     </main>
 <?php include("../partial/footer.php") ?>
-</body>
-</html>

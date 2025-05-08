@@ -78,5 +78,3 @@ session();
         <p class="btn-group"><a href="../index.php" class="btn">トップメニューへ</a></p>
     </main>
     <?php include("../partial/footer.php") ?>
-</body>
-</html>

@@ -1,0 +1,143 @@
+.song-details {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff0f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  color: #333;
+}
+
+.song-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.song-image img {
+  width: 100%;
+  max-width: 360px;
+}
+
+.song-info {
+  flex: 1;
+}
+
+.song-details h1 {
+  font-size: 2rem;
+  color: #c84e74;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #f19db5;
+  padding-bottom: 0.3rem;
+}
+
+.info p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.extra-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+a {
+  color: #d85c85;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 アスペクト比 */
+  height: 0;
+  overflow: hidden;
+  margin: 0 auto; /* 中央寄せ */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.member-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.member-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.member-card {
+  width: 140px;
+  text-align: center;
+}
+
+.member-card img {
+  width: 100%;
+}
+
+.center-label {
+  color: #e60033; /* 濃い赤 */
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+
+/* PC画面では横並び */
+@media screen and (min-width: 768px) {
+  .song-flex {
+    flex-direction: row;
+  }
+
+  .song-image {
+    flex: 0 0 360px;
+  }
+
+  .song-info {
+    flex: 1;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 アスペクト比 */
+    height: 0;
+    overflow: hidden;
+    margin: 0 auto; /* 中央寄せ */
+  }
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  
+  .member-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+  
+}

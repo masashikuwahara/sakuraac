@@ -5,6 +5,12 @@
 <!-- accumulation -->
 <?php include('partial/header.php') ?>
 version 1.0.0-alpha
+<h2>メンバーや楽曲を検索</h2>
+<form method="GET" action="search.php">
+  <input type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+  <button type="submit">検索</button>
+</form>
+
 <main class="member-list">
   <!-- メンバー -->
   <?php

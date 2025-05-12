@@ -4,42 +4,58 @@
 
 <?php include('partial/header.php') ?>
 
+<main class="members-container">
+  <h2 class="section-title">楽曲一覧</h2>
+
   <?php
   try {
     require('connect.php');
     $dbh->query('SET NAMES utf8');
-    $sql='SELECT id, title, photo FROM songs ';
-    $stmt=$dbh->prepare($sql);
-    $stmt->execute();
+
+    // 表題曲（titlesong = 1）
+    $stmt_title = $dbh->prepare('SELECT id, title, photo FROM songs WHERE titlesong = 1');
+    $stmt_title->execute();
+
+    echo '<section>';
+    echo '<h3 class="subsection-title">表題曲</h3>';
+    echo '<div class="member-flex song-list">';
+    while ($rec = $stmt_title->fetch(PDO::FETCH_ASSOC)) {
+      $img = $rec['photo'] !== '' 
+        ? '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">' 
+        : '';
+      echo '<div class="song-card">'.
+            '<a href="songdetail.php?id='.$rec['id'].'">'.
+              '<div class="song-image">'.$img.'</div>'.
+              '<p class="song-title">'.$rec['title'].'</p>'.
+            '</a>'.
+           '</div>';
+    }
+    echo '</div>';
+    echo '</section>';
+
+    // その他の楽曲（titlesong = 0）
+    $stmt_other = $dbh->prepare('SELECT id, title, photo FROM songs WHERE titlesong = 0');
+    $stmt_other->execute();
+
+    echo '<section>';
+    echo '<h3 class="subsection-title">その他の楽曲</h3>';
+    echo '<div class="member-flex song-list">';
+    while ($rec = $stmt_other->fetch(PDO::FETCH_ASSOC)) {
+      $img = $rec['photo'] !== '' 
+        ? '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">' 
+        : '';
+      echo '<div class="song-card">'.
+            '<a href="songdetail.php?id='.$rec['id'].'">'.
+              '<div class="song-image">'.$img.'</div>'.
+              '<p class="song-title">'.$rec['title'].'</p>'.
+            '</a>'.
+           '</div>';
+    }
+    echo '</div>';
+    echo '</section>';
 
     $dbh = null;
 
-    while(true)
-    {
-      $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-      if(!$rec)
-      {
-        break;
-      }
-
-      if($rec['photo'] === '')
-      {
-        $img_name = '';
-      }
-      else
-      {
-        $img_name = '<img style="width:360px" src="photos/'.$rec['photo'].'">';
-      }
-
-      echo '<span class="img_style">'.
-          '<a href="songdetail.php?id='.$rec['id'].'">'.
-          $img_name.
-          '<br />'.
-          $rec['title'].
-            '</a>'.
-          '<br />'.
-          '</span>';
-    }
   } catch (Exception $e) {
     echo 'ただいま障害により大変ご迷惑をお掛けしております。';
     exit();

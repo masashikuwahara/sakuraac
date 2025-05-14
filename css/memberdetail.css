@@ -32,6 +32,59 @@
   padding-bottom: 0.3rem;
 }
 
+.member-songs {
+  margin-top: 20px;
+}
+
+.filter-buttons {
+  margin-bottom: 10px;
+}
+
+.filter-buttons button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filter-buttons button:hover {
+  background-color: #ccc;
+}
+
+.member-songs ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding-left: 0;
+  justify-content: flex-start;
+}
+
+/* 通常は横並び（PC表示） */
+.member-songs li {
+  flex: 0 0 calc(50% - 10px); /* 横に2列分表示（gap考慮） */
+  background-color: #f0f0f0;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* センター曲の装飾 */
+.member-songs li.center-song {
+  background-color: #ffeaea;
+  border: 1px solid #ff6b6b;
+  font-weight: bold;
+  color: #d80000;
+}
+
+.center-label {
+  font-size: 0.9em;
+  color: #d80000;
+}
+
+
 .furigana {
   font-size: 1rem;
   color: #777;
@@ -85,5 +138,11 @@ a:hover {
 
   .member-info {
     flex: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .member-songs li {
+    flex: 0 0 100%;
   }
 }

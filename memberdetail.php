@@ -86,5 +86,61 @@ $member_blog = $mem['blog'];
       </div>
     </div>
   </div>
-</div>
+  <?php
+  // 例: 上の方で member_id を取得済みとしている想定
+  $sql = 'SELECT songs.id, songs.title, song_members.is_center
+    FROM song_members
+    JOIN songs ON song_members.song_id = songs.id
+    WHERE song_members.member_id = ?
+    ORDER BY songs.id ASC';
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute([$member_id]); // ここで $id は該当メンバーのID
+  $songs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  ?>
+
+  <div class="member-songs">
+    <h2>参加楽曲</h2>
+
+    <div class="filter-buttons">
+      <button onclick="showAllSongs()">すべて表示</button>
+      <button onclick="showCenterSongs()">センター曲のみ</button>
+    </div>
+
+    <?php if (count($songs) > 0): ?>
+      <ul id="songList">
+        <?php foreach ($songs as $song): ?>
+          <li class="song-item <?php echo $song['is_center'] ? 'center-song' : ''; ?>">
+            <a href="songdetail.php?id=<?php echo $song['id']; ?>">
+              <?php echo htmlspecialchars($song['title']); ?>
+            </a>
+              <?php if ($song['is_center']): ?>
+                <span class="center-label">（センター）</span>
+              <?php endif; ?>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php else: ?>
+      <p>参加楽曲は見つかりませんでした。</p>
+    <?php endif; ?>
+  </div>
+
+  <script>
+    function showAllSongs() {
+      document.querySelectorAll('.song-item').forEach(item => {
+        item.style.display = 'list-item';
+      });
+    }
+
+    function showCenterSongs() {
+      document.querySelectorAll('.song-item').forEach(item => {
+        if (item.classList.contains('center-song')) {
+          item.style.display = 'list-item';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+
   <?php require('partial/footer.php'); ?>

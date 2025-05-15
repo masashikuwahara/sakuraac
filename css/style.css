@@ -163,6 +163,43 @@ nav {
   .sort-buttons a:hover {
     background: #e488a6;
   }
+
+  .search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
+  gap: 10px;
+  padding: 20px;
+  justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.result-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.result-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.result-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.result-card a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
+}
 }
 
 @media (min-width: 768px) {
@@ -189,6 +226,43 @@ nav {
     gap: 16px; /* カード間のスペース */
     justify-items: start; /* 各カードの中身も左寄せ */
   }
+
+  .search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
+  gap: 30px;
+  padding: 20px;
+  justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.result-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  width: 180px;
+  text-align: center;
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.result-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.result-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.result-card a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
+}
   
 }
 
@@ -414,42 +488,13 @@ nav {
   text-align: center;
 }
 
-.search-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  justify-items: center;
-}
-
-.result-card {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  width: 180px;
-  text-align: center;
-  padding: 10px;
-  transition: box-shadow 0.3s ease;
-}
-
-.result-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.result-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-
-.result-card a {
-  text-decoration: none;
-  color: #333;
+.result-infoerror {
+  margin: 20px 0;
+  font-size: 18px;
   font-weight: bold;
-  display: block;
-  margin-top: 5px;
+  text-align: center;
+  color: #ff0000;
 }
-
 
 /* ページネーション */
 .pagination {

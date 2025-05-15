@@ -19,9 +19,9 @@ $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 // 検索クエリの取得
 $search_query = isset($_GET['s']) ? trim($_GET['s']) : '';
 if($_GET['s'] != ''){
-  echo "<div class='s'> 「{$_GET['s']}」の検索結果</div>";
+  echo "<div class='result-info'> 「{$_GET['s']}」の検索結果</div>";
 }else{
-  echo "<div class='s'></div>";
+  echo "<div class='result-info'></div>";
 }
 
 // エラーメッセージの初期化
@@ -57,7 +57,7 @@ if ($search_query === '') {
 
 <!-- エラーメッセージの表示 -->
 <?php if ($error_message): ?>
-    <div class="result"><?php echo htmlspecialchars($error_message); ?></div>
+    <div class="result-infoerror"><?php echo htmlspecialchars($error_message); ?></div>
 <?php else: ?>
     <!-- 検索結果の表示 -->
 <?php if (!empty($items)): ?>
@@ -73,7 +73,7 @@ if ($search_query === '') {
     <?php endforeach; ?>
   </div>
 <?php else: ?>
-  <div class="result-info">そのキーワードでは見つかりませんでした</div>
+  <div class="result-infoerror">そのキーワードでは見つかりませんでした</div>
 <?php endif; ?>
 
 <!-- ページネーションリンク -->

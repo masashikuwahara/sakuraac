@@ -60,61 +60,54 @@ if ($search_query === '') {
     <div class="result"><?php echo htmlspecialchars($error_message); ?></div>
 <?php else: ?>
     <!-- 検索結果の表示 -->
-    <?php if (!empty($items)): ?>
-      <?php echo "<div>{$total_items}件見つかりました</div></br>" ?>
-        <?php foreach ($items as $item): ?>
-            <?php echo '<div>' ?>
-            <?php $img_name='<img style="width:120px" src="images/'.$item['image'].'">' ?>
-            <?php $a = '<a href="memberdetail.php?id='.$item['id'].'">'.$img_name."{$item['name']}"."</a>"?>
-            <?php $a = mb_convert_encoding($a, "UTF-8", "auto")?>
-            <?php echo $a?>
-            <?php echo '<div">' ?>
-            <?php echo "<hr>" ?>
-            <?php echo '</div>' ?>
-            <?php echo '</div>' ?>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <div>そのキーワードでは見つかりませんでした</div>
+<?php if (!empty($items)): ?>
+  <div class="result-info"><?php echo $total_items; ?>件見つかりました</div>
+  <div class="search-results">
+    <?php foreach ($items as $item): ?>
+      <div class="result-card">
+        <a href="memberdetail.php?id=<?php echo $item['id']; ?>">
+          <img src="images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+          <?php echo htmlspecialchars($item['name']); ?>
+        </a>
+      </div>
+    <?php endforeach; ?>
+  </div>
+<?php else: ?>
+  <div class="result-info">そのキーワードでは見つかりませんでした</div>
 <?php endif; ?>
 
 <!-- ページネーションリンク -->
-<div">
-    <?php if ($current_page > 1): ?>
-        <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $current_page - 1; ?>">前のページ</a>
-    <?php endif; ?>
+<div class="pagination">
+  <?php if ($current_page > 1): ?>
+    <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $current_page - 1; ?>">前のページ</a>
+  <?php endif; ?>
 
-    <?php
-    // 最初のページと最後のページを常に表示
-    $range = 2; // 現在のページからの表示範囲
-    for ($i = 1; $i <= $total_pages; $i++): 
-        if ($i == 1 || $i == $total_pages || ($i >= $current_page - $range && $i <= $current_page + $range)):
-    ?>
-        <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $i; ?>" <?php if ($i === $current_page) echo 'class="active"'; ?>>
-            <?php echo $i; ?>
-        </a>
-    <?php 
-        elseif ($i == $current_page - $range - 1 || $i == $current_page + $range + 1): 
-            // 省略部分に「...」を挿入
-    ?>
-        <span>...</span>
-    <?php 
-        endif;
-    endfor; 
-    ?>
+  <?php
+  $range = 2;
+  for ($i = 1; $i <= $total_pages; $i++):
+    if ($i == 1 || $i == $total_pages || ($i >= $current_page - $range && $i <= $current_page + $range)):
+  ?>
+    <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $i; ?>" class="<?php echo ($i === $current_page) ? 'active' : ''; ?>">
+      <?php echo $i; ?>
+    </a>
+  <?php elseif ($i == $current_page - $range - 1 || $i == $current_page + $range + 1): ?>
+    <span>...</span>
+  <?php endif; endfor; ?>
 
-    <?php if ($current_page < $total_pages): ?>
-        <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $current_page + 1; ?>">次のページ</a>
-    <?php endif; ?>
+  <?php if ($current_page < $total_pages): ?>
+    <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $current_page + 1; ?>">次のページ</a>
+  <?php endif; ?>
 </div>
+
 <?php endif; ?>
-    <p>もう一度検索する</p>
-    <form method="GET" action="search.php">
-      <input type="text" name="s" placeholder="メンバー名、楽曲名を入力">
-      <button type="submit">検索</button>
+    <p class="search-form">もう一度検索する</p>
+    <form method="GET" action="search.php" class="search-form">
+        <input type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+        <button type="submit">検索</button>
     </form>
   <script src="https://unpkg.com/scrollreveal"></script>
   <script>
-  ScrollReveal().reveal('.f',{
+  ScrollReveal().reveal('.result-card',{
     duration: 800,
     viewFactor: 0.2,
   });

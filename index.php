@@ -6,8 +6,10 @@
 <?php include('partial/header.php') ?>
 version 1.0.0-alpha
 <h2 class="search-form">メンバーや楽曲を検索</h2>
-<form method="GET" action="search.php" class="search-form">
-  <input type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+<form  method="GET" action="search.php" class="search-form">
+  <label><input type="radio" class="option-input" name="select" value="member" checked>メンバーを検索</label>
+  <label><input type="radio" class="option-input" name="select" value="song" >楽曲を検索</label><br />
+  <input class="sea" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
   <button type="submit">検索</button>
 </form>
 

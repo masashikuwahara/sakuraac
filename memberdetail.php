@@ -80,7 +80,7 @@ $member_blog = $mem['blog'];
       </div>
 
       <div class="info">
-        <p>ブログ：<?php echo nl2br(htmlspecialchars($member_blog)); ?></p>
+        <p>最新ブログ：<?php echo nl2br(htmlspecialchars($member_blog)); ?></p>
         <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank"><?php echo $member_sns; ?></a></p>
         <p>キャラクター：<?php echo nl2br(htmlspecialchars($member_introduction)); ?></p>
       </div>

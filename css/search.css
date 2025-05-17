@@ -1,0 +1,62 @@
+.option-input {
+    margin-right: 5px;
+}
+
+.sea {
+    padding: 5px;
+    margin: 10px;
+}
+
+.result-info {
+    margin: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.result-info-error {
+    margin: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}
+
+  .search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
+  gap: 10px;
+  padding: 20px;
+  justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.search-result a {
+    display: block;
+    margin: 10px;
+    text-decoration: none;
+}
+
+img {
+  width: 100%;
+  max-width: 360px;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* スマホ表示（2列） */
+@media (max-width: 600px) {
+  .results {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}

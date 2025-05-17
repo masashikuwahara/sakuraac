@@ -1,110 +1,69 @@
 <?php include('partial/top.php') ?>
+<link rel="stylesheet" href="css/search.css">
 
 <title>検索結果</title>
 
 <?php include('partial/header.php') ?>
 
-<?php
-try {
-    require('connect.php');
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-$items_per_page = 10;
-
-// 現在のページ番号（デフォルトは1）
-$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-// 検索クエリの取得
-$search_query = isset($_GET['s']) ? trim($_GET['s']) : '';
-if($_GET['s'] != ''){
-  echo "<div class='result-info'> 「{$_GET['s']}」の検索結果</div>";
-}else{
-  echo "<div class='result-info'></div>";
-}
-
-// エラーメッセージの初期化
-$error_message = '';
-
-// 検索クエリが空でない場合のみ検索処理を実行
-if ($search_query === '') {
-    $error_message = 'キーワードを入力してください';
-} else {
-    // ページネーションの設定と検索処理
-    $offset = ($current_page - 1) * $items_per_page;
-
-    // 検索とページネーションのSQLクエリ
-    $sql = "SELECT id, name, furigana, image FROM members WHERE name LIKE :search_query OR furigana 
-    LIKE :search_query LIMIT :offset, :items_per_page";
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(':search_query', '%' . $search_query . '%', PDO::PARAM_STR);
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindValue(':items_per_page', $items_per_page, PDO::PARAM_INT);
-    $stmt->execute();
-    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // 総データ件数を取得
-    $total_items_sql = "SELECT COUNT(*) FROM members WHERE name LIKE :search_query OR furigana LIKE :search_query";
-    $total_stmt = $dbh->prepare($total_items_sql);
-    $total_stmt->bindValue(':search_query', '%' . $search_query . '%', PDO::PARAM_STR);
-    $total_stmt->execute();
-    $total_items = $total_stmt->fetchColumn();
-
-    $total_pages = ceil($total_items / $items_per_page);
-}
-?>
-
-<!-- エラーメッセージの表示 -->
-<?php if ($error_message): ?>
-    <div class="result-infoerror"><?php echo htmlspecialchars($error_message); ?></div>
-<?php else: ?>
-    <!-- 検索結果の表示 -->
-<?php if (!empty($items)): ?>
-  <div class="result-info"><?php echo $total_items; ?>件見つかりました</div>
-  <div class="search-results">
-    <?php foreach ($items as $item): ?>
-      <div class="result-card">
-        <a href="memberdetail.php?id=<?php echo $item['id']; ?>">
-          <img src="images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
-          <?php echo htmlspecialchars($item['name']); ?>
-        </a>
-      </div>
-    <?php endforeach; ?>
-  </div>
-<?php else: ?>
-  <div class="result-infoerror">そのキーワードでは見つかりませんでした</div>
-<?php endif; ?>
-
-<!-- ページネーションリンク -->
-<div class="pagination">
-  <?php if ($current_page > 1): ?>
-    <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $current_page - 1; ?>">前のページ</a>
-  <?php endif; ?>
-
+<div class="search-result">
   <?php
-  $range = 2;
-  for ($i = 1; $i <= $total_pages; $i++):
-    if ($i == 1 || $i == $total_pages || ($i >= $current_page - $range && $i <= $current_page + $range)):
+  try {
+      require('connect.php');
+  } catch (PDOException $e) {
+      echo "Connection failed: " . $e->getMessage();
+  }
+
+  $search_query = isset($_GET['s']) ? trim($_GET['s']) : '';
+  $select_type = isset($_GET['select']) ? $_GET['select'] : 'member';
+
+  if ($search_query !== '') {
+      echo "<div class='result-info'>「" . htmlspecialchars($search_query, ENT_QUOTES, 'UTF-8') . "」の検索結果</div>";
+
+      if ($select_type === 'member') {
+          // メンバー検索（名前またはふりがな）
+          $stmt = $dbh->prepare("SELECT * FROM members WHERE name LIKE :keyword OR furigana LIKE :keyword");
+          $stmt->bindValue(':keyword', '%' . $search_query . '%', PDO::PARAM_STR);
+      } else {
+          // 楽曲検索（タイトル）
+          $stmt = $dbh->prepare("SELECT * FROM songs WHERE title LIKE :keyword");
+          $stmt->bindValue(':keyword', '%' . $search_query . '%', PDO::PARAM_STR);
+      }
+
+      $stmt->execute();
+      $t = $stmt->rowCount();
+
+      if ($t > 0) {
+          echo "<div class='result-info'>{$t}件見つかりました</div>";
+          echo "<div class='results'>";
+          while ($r = $stmt->fetch()) {
+              if ($select_type === 'member') {
+                  $img = htmlspecialchars($r['image'], ENT_QUOTES, 'UTF-8');
+                  $name = htmlspecialchars($r['name'], ENT_QUOTES, 'UTF-8');
+                  $id = (int)$r['id'];
+                  echo "<div class='member-card'><a href='memberdetail.php?id={$id}'><img src='images/{$img}'><p>{$name}</p></a></div>";
+              } else {
+                  $img = htmlspecialchars($r['photo'], ENT_QUOTES, 'UTF-8');
+                  $title = htmlspecialchars($r['title'], ENT_QUOTES, 'UTF-8');
+                  $id = (int)$r['id'];
+                  echo "<div class='song-card'><a href='songdetail.php?id={$id}'><img src='photos/{$img}'><p class='song-title'>{$title}</p></a></div>";
+              }
+          }
+      } else {
+        echo "<div class='result-info-error'>そのキーワードでは見つかりませんでした</div>";
+      }
+    } else {
+        echo "<div class='result-info-error'>キーワードを入力してください</div>";
+    }
+    echo "</div>";
   ?>
-    <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $i; ?>" class="<?php echo ($i === $current_page) ? 'active' : ''; ?>">
-      <?php echo $i; ?>
-    </a>
-  <?php elseif ($i == $current_page - $range - 1 || $i == $current_page + $range + 1): ?>
-    <span>...</span>
-  <?php endif; endfor; ?>
-
-  <?php if ($current_page < $total_pages): ?>
-    <a href="?s=<?php echo urlencode($search_query); ?>&page=<?php echo $current_page + 1; ?>">次のページ</a>
-  <?php endif; ?>
-</div>
-
-<?php endif; ?>
-    <p class="search-form">もう一度検索する</p>
-    <form method="GET" action="search.php" class="search-form">
-        <input type="text" name="s" placeholder="メンバー名、楽曲名を入力">
-        <button type="submit">検索</button>
-    </form>
+  </div>
+  <h2 class="search-form">もう一度検索</h2>
+  <form  method="GET" action="search.php" class="search-form">
+    <label><input type="radio" class="option-input" name="select" value="member" checked>メンバーを検索</label>
+    <label><input type="radio" class="option-input" name="select" value="song" >楽曲を検索</label><br />
+    <input class="sea" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+    <button type="submit">検索</button>
+  </form>
   <script src="https://unpkg.com/scrollreveal"></script>
   <script>
   ScrollReveal().reveal('.result-card',{

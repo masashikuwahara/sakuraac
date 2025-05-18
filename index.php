@@ -5,12 +5,19 @@
 <!-- accumulation -->
 <?php include('partial/header.php') ?>
 version 1.0.0-alpha
-<h2 class="search-form">メンバーや楽曲を検索</h2>
-<form  method="GET" action="search.php" class="search-form">
-  <label><input type="radio" class="option-input" name="select" value="member" checked>メンバーを検索</label>
-  <label><input type="radio" class="option-input" name="select" value="song" >楽曲を検索</label><br />
-  <input class="sea" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
-  <button type="submit">検索</button>
+<form method="GET" action="search.php" class="search-form">
+  <div class="radio-group">
+    <input type="radio" id="member" class="option-input" name="select" value="member" checked>
+    <label for="member" class="radio-label">メンバーを検索</label>
+
+    <input type="radio" id="song" class="option-input" name="select" value="song">
+    <label for="song" class="radio-label">楽曲を検索</label>
+  </div>
+  
+  <div class="search-input-group">
+    <input class="search-input" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+    <button type="submit" class="search-button">検索</button>
+  </div>
 </form>
 
 <main class="member-list">

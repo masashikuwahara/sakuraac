@@ -40,12 +40,12 @@
                   $img = htmlspecialchars($r['image'], ENT_QUOTES, 'UTF-8');
                   $name = htmlspecialchars($r['name'], ENT_QUOTES, 'UTF-8');
                   $id = (int)$r['id'];
-                  echo "<div class='member-card'><a href='memberdetail.php?id={$id}'><img src='images/{$img}'><p>{$name}</p></a></div>";
+                  echo "<div class='result-card'><a href='memberdetail.php?id={$id}'><img src='images/{$img}'><p class='result-title'>{$name}</p></a></div>";
               } else {
                   $img = htmlspecialchars($r['photo'], ENT_QUOTES, 'UTF-8');
                   $title = htmlspecialchars($r['title'], ENT_QUOTES, 'UTF-8');
                   $id = (int)$r['id'];
-                  echo "<div class='song-card'><a href='songdetail.php?id={$id}'><img src='photos/{$img}'><p class='song-title'>{$title}</p></a></div>";
+                  echo "<div class='result-card'><a href='songdetail.php?id={$id}'><img src='photos/{$img}'><p class='result-title'>{$title}</p></a></div>";
               }
           }
       } else {
@@ -57,13 +57,24 @@
     echo "</div>";
   ?>
   </div>
-  <h2 class="search-form">もう一度検索</h2>
-  <form  method="GET" action="search.php" class="search-form">
-    <label><input type="radio" class="option-input" name="select" value="member" checked>メンバーを検索</label>
-    <label><input type="radio" class="option-input" name="select" value="song" >楽曲を検索</label><br />
-    <input class="sea" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
-    <button type="submit">検索</button>
-  </form>
+
+  <h2 class="search-form">もう一度検索する</h2>
+<form method="GET" action="search.php" class="search-form">
+  <div class="radio-group">
+    <input type="radio" id="member" class="option-input" name="select" value="member" checked>
+    <label for="member" class="radio-label">メンバーを検索</label>
+
+    <input type="radio" id="song" class="option-input" name="select" value="song">
+    <label for="song" class="radio-label">楽曲を検索</label>
+  </div>
+  
+  <div class="search-input-group">
+    <input class="search-input" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+    <button type="submit" class="search-button">検索</button>
+  </div>
+</form>
+
+
   <script src="https://unpkg.com/scrollreveal"></script>
   <script>
   ScrollReveal().reveal('.result-card',{

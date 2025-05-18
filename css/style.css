@@ -163,6 +163,23 @@ nav {
   .sort-buttons a:hover {
     background: #e488a6;
   }
+
+  .search-form {
+    padding: 16px;
+  }
+
+  .search-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-input-group {
+    flex-direction: column;
+  }
+
+  .search-button {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -189,43 +206,6 @@ nav {
     gap: 16px; /* カード間のスペース */
     justify-items: start; /* 各カードの中身も左寄せ */
   }
-
-  .search-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
-  gap: 30px;
-  padding: 20px;
-  justify-items: center;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.result-card {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  width: 180px;
-  text-align: center;
-  padding: 10px;
-  transition: box-shadow 0.3s ease;
-}
-
-.result-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.result-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-
-.result-card a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  display: block;
-  margin-top: 5px;
-}
   
 }
 
@@ -404,84 +384,101 @@ nav {
 
 /* 検索フォーム */
 
+/* フォーム全体 */
 .search-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* ラジオボタンスタイル */
+.search-options {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.radio-label {
+  display: flex;
   align-items: center;
-  margin: 20px auto;
-  gap: 10px;
+  gap: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.search-form input[type="text"] {
-  padding: 10px 15px;
-  font-size: 16px;
-  width: 250px;
+/* 入力エリアとボタン */
+.search-input-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1 1 0;
+  padding: 10px 14px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s;
+  font-size: 14px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
 }
 
-.search-form input[type="text"]:focus {
-  border-color: #6b4c9a; /* おしゃれな紫色などに変更可能 */
-  box-shadow: 0 0 5px rgba(107, 76, 154, 0.5);
-}
-
-.search-form button {
+.search-button {
   padding: 10px 20px;
-  font-size: 16px;
-  background-color: #6b4c9a;
+  background-color: #e91e63; /* 櫻坂ピンク */
   color: white;
+  font-weight: bold;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
-.search-form button:hover {
-  background-color: #543a78;
+/* ホバー時のカラー */
+.search-button:hover {
+  background-color: #c2185b;
 }
 
-/* 検索結果 */
-
-.result-info {
-  margin: 20px 0;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
+.search-input:focus {
+  border: 2px solid #e91e63;
+  outline: none;
+  background-color: #fff0f5; /* 薄いピンク背景（好みで） */
+  transition: 0.3s;
 }
 
-.result-infoerror {
-  margin: 20px 0;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  color: #ff0000;
+/* ラジオボタン */
+.radio-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
-/* ページネーション */
-.pagination {
-  text-align: center;
-  margin: 30px 0;
+.radio-label {
+  position: relative;
+  cursor: pointer;
+  padding: 10px 16px;
+  background-color: #f4f4f4;
+  border: 2px solid #ccc;
+  font-size: 14px;
+  transition: all 0.3s;
+  user-select: none;
 }
 
-.pagination a,
-.pagination span {
-  display: inline-block;
-  margin: 0 5px;
-  padding: 8px 14px;
-  text-decoration: none;
-  color: #333;
-  border: 1px solid #ccc;
-  transition: background 0.3s;
-}
-
-.pagination a:hover {
-  background-color: #eee;
-}
-
-.pagination .active {
-  background-color: #6b4c9a;
+/* 選択されたとき */
+.option-input:checked + .radio-label {
+  background-color: #e91e63; /* カードに合わせた色 */
   color: white;
-  border-color: #6b4c9a;
+  border-color: #e91e63;
+}
+
+/* input 非表示 */
+.option-input {
+  display: none;
 }

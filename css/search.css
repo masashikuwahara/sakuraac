@@ -20,25 +20,20 @@
     color: red;
 }
 
-  .search-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
-  gap: 10px;
-  padding: 20px;
-  justify-items: center;
-  max-width: 1000px;
-  margin: 0 auto;
+.search-results {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
+gap: 10px;
+padding: 20px;
+justify-items: center;
+max-width: 1000px;
+margin: 0 auto;
 }
 
 .search-result a {
     display: block;
     margin: 10px;
     text-decoration: none;
-}
-
-img {
-  width: 100%;
-  max-width: 360px;
 }
 
 .results {
@@ -50,11 +45,52 @@ img {
   margin: 0 auto;
 }
 
+.result-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 220px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.result-card:hover {
+  transform: scale(1.02);
+}
+
+.result-card img {
+  width: 100%;
+  max-width: 360px;
+}
+
+.result-title {
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.result-info {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.result-infoerror {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #ff0000;
+}
+
 /* スマホ表示（2列） */
 @media (max-width: 600px) {
   .results {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 10px;
+    gap: 10px;
     padding: 20px;
     max-width: 1000px;
     margin: 0 auto;

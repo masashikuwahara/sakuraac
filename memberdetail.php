@@ -29,8 +29,8 @@ $member_introduction = $mem['introduction'];
 $member_blog = $mem['blog'];
 ?>
 <?php include('partial/top.php') ?>
-
 <link rel="stylesheet" href="css/memberdetail.css">
+
 <title><?php echo $member_name;?></title>
 
 <?php require('partial/header.php'); ?>
@@ -80,7 +80,9 @@ $member_blog = $mem['blog'];
       </div>
 
       <div class="info">
-        <p>最新ブログ：<?php echo nl2br(htmlspecialchars($member_blog)); ?></p>
+        <?php if($member_blog): ?>
+        <p><a href="<?php echo $member_blog; ?>" target="_blank">ブログ</a></p>
+        <?php endif; ?>
         <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank"><?php echo $member_sns; ?></a></p>
         <p>キャラクター：<?php echo nl2br(htmlspecialchars($member_introduction)); ?></p>
       </div>

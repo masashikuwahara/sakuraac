@@ -4,7 +4,7 @@ session();
 
 $member_id=$_GET['id'];
 
-require('../connect.php');
+require('../../connect.php');
 $dbh->query('SET NAMES utf8');
 $sql = 'SELECT id, name, image FROM members WHERE id=?';
 $stmt = $dbh->prepare($sql);

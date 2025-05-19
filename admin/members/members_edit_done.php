@@ -36,7 +36,7 @@ session();
         $members_graduation = $mem['graduation'];
         $members_blog = $mem['blog'];
 
-        require('../connect.php');
+        require('../../connect.php');
 
         $sql = 'UPDATE members SET name=?, furigana=?, nickname=?, birth=?, constellation=?, 
         height=?,blood=?, birthplace=?, color1=?, colorname1=?, color2=?, colorname2=?, sns=?,

@@ -23,7 +23,7 @@ session();
         $member_imageold = $post['member_imageold'];
         $member_image = $post['img'];
 
-        require('../connect.php');
+        require('../../connect.php');
 
         $sql = 'UPDATE members SET image=? WHERE id=?';
         $stmt = $dbh->prepare($sql);

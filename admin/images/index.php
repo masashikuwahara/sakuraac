@@ -17,7 +17,7 @@ session();
     <main>
         <?php
         try {
-            require('../connect.php');
+            require('../../connect.php');
             $dbh->query('SET NAMES utf8');
             
             if (isset($_GET['page'])) {

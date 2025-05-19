@@ -4,7 +4,7 @@ session();
 
 $members_id=$_GET['id'];
 
-require('../connect.php');
+require('../../connect.php');
 $dbh->query('SET NAMES utf8');
 $sql = 'SELECT name, furigana, nickname, birth, constellation, height,
 blood,birthplace, grade, color1, colorname1, color2, colorname2, sns,

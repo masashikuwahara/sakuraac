@@ -4,7 +4,7 @@
   $my_sea=htmlspecialchars($_GET["s"], ENT_QUOTES);
   $s = mb_convert_encoding($my_sea, "UTF-8", "auto");
   try{
-      require('../connect.php');
+      require('../../connect.php');
   } catch(PDOException $e){
       echo "失敗:" . $e->getMessage() . "\n";
       exit();

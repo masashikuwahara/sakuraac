@@ -14,7 +14,7 @@ try {
         exit();
     }
 
-    require('connect.php');
+    require('../connect.php');
 
     $sql = 'SELECT name FROM users WHERE id=? AND password=?';
     $stmt = $dbh->prepare($sql);

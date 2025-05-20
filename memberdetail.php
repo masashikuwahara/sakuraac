@@ -81,9 +81,11 @@ $member_blog = $mem['blog'];
 
       <div class="info">
         <?php if($member_blog): ?>
-        <p><a href="<?php echo $member_blog; ?>" target="_blank">ブログ</a></p>
+          <p><a href="<?php echo $member_blog; ?>" target="_blank">ブログ</a></p>
         <?php endif; ?>
-        <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank"><?php echo $member_sns; ?></a></p>
+        <?php if($member_sns): ?>
+          <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank">ここにマーク</a></p>
+        <?php endif; ?>
         <p>キャラクター：<?php echo nl2br(htmlspecialchars($member_introduction)); ?></p>
       </div>
     </div>

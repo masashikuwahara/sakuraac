@@ -66,16 +66,18 @@ version 2.0.0-alpha
     $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $dbh = null;
 
-    // 配列をシャッフルして先頭7人を取得
+    // 配列をシャッフルして先頭7曲を取得
     shuffle($members);
     $selected_members = array_slice($members, 0, 8);
 
     foreach ($selected_members as $rec) {
       $img_name = $rec['photo'] === '' ? '' : '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">';
-      echo '<div class="member-card">'.
-              '<a href="songdetail.php?id='.$rec['id'].'">'.
-              $img_name.'<p>'.$rec['title'].'</p></a>'.
-            '</div>';
+      echo '<div class="song-card">'.
+            '<a href="songdetail.php?id='.$rec['id'].'">'.
+              '<div class="song-image">'.$img_name.'</div>'.
+              '<p class="song-title">'.$rec['title'].'</p>'.
+            '</a>'.
+           '</div>';
     }
 
     echo '</div>';

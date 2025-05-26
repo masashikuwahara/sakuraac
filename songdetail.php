@@ -51,10 +51,12 @@ $song_photo = $song['photo'];
         <p>収録：<?php echo $song_is_recorded; ?></p>
       </div>
 
+      <?php if(!empty($song_lyric)): ?>
       <div class="extra-info">
         <h2>歌詞リンク</h2>
         <a href="<?php echo $song_lyric; ?>" target="_blank" rel="noopener">歌詞はこちら</a>
       </div>
+      <?php endif; ?>
     </div>
   </div>
 </div>

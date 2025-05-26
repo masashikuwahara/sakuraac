@@ -187,19 +187,6 @@ nav {
     display: none;
   }
 
-  .member-card {
-    flex: 0 1 calc(25% - 1.5rem); /* 4列 */
-    background: #f9f9f9;
-    text-align: center;
-    overflow: hidden;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 220px;
-    transition: transform 0.3s ease;
-  }
-
   .member-flex.song-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -345,17 +332,20 @@ nav {
 }
 
 .song-card {
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-  width: 100%;
-  max-width: 220px;
+  width: calc((100% - 1.5rem) / 2); /* 2列分に調整 */
+  background: #f9f9f9;
   text-align: center;
-  transition: transform 0.2s ease;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 220px;
+  transition: transform 0.3s ease;
 }
 
 .song-card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.02);
 }
 
 .song-image img {

@@ -33,6 +33,27 @@
     echo '</div>';
     echo '</section>';
 
+    // アルバム曲（titlesong = 3）
+    $stmt_title = $dbh->prepare('SELECT id, title, photo FROM songs WHERE titlesong = 3');
+    $stmt_title->execute();
+
+    echo '<section>';
+    echo '<h3 class="subsection-title">アルバム曲</h3>';
+    echo '<div class="member-flex song-list">';
+    while ($rec = $stmt_title->fetch(PDO::FETCH_ASSOC)) {
+      $img = $rec['photo'] !== '' 
+        ? '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">' 
+        : '';
+      echo '<div class="song-card">'.
+            '<a href="songdetail.php?id='.$rec['id'].'">'.
+              '<div class="song-image">'.$img.'</div>'.
+              '<p class="song-title">'.$rec['title'].'</p>'.
+            '</a>'.
+           '</div>';
+    }
+    echo '</div>';
+    echo '</section>';
+
     // その他の楽曲（titlesong = 0）
     $stmt_other = $dbh->prepare('SELECT id, title, photo FROM songs WHERE titlesong = 0');
     $stmt_other->execute();

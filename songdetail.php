@@ -76,7 +76,7 @@ try {
   if (!empty($relatedSongs)) {
     echo '<div class="song-details">';
     echo '<h2>同じ作品に収録されている楽曲</h2>';
-    echo '<div class="member-flex song-list">';
+    echo '<div class="song-list">';
 
     foreach ($relatedSongs as $song) {
       $img = $song['photo'] !== '' 

@@ -18,7 +18,7 @@
 
     echo '<section>';
     echo '<h3 class="subsection-title">表題曲</h3>';
-    echo '<div class="member-flex song-list">';
+    echo '<div class="song-list">';
     while ($rec = $stmt_title->fetch(PDO::FETCH_ASSOC)) {
       $img = $rec['photo'] !== '' 
         ? '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">' 
@@ -39,7 +39,7 @@
 
     echo '<section>';
     echo '<h3 class="subsection-title">アルバム曲</h3>';
-    echo '<div class="member-flex song-list">';
+    echo '<div class="song-list">';
     while ($rec = $stmt_title->fetch(PDO::FETCH_ASSOC)) {
       $img = $rec['photo'] !== '' 
         ? '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">' 
@@ -60,7 +60,7 @@
 
     echo '<section>';
     echo '<h3 class="subsection-title">その他の楽曲</h3>';
-    echo '<div class="member-flex song-list">';
+    echo '<div class="song-list">';
     while ($rec = $stmt_other->fetch(PDO::FETCH_ASSOC)) {
       $img = $rec['photo'] !== '' 
         ? '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">' 

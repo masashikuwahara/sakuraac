@@ -37,9 +37,8 @@ margin: 0 auto;
 }
 
 .results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
   padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
@@ -52,6 +51,7 @@ margin: 0 auto;
   width: 100%;
   max-width: 220px;
   text-align: center;
+  margin-right: 10px;
   transition: transform 0.2s ease;
 }
 
@@ -89,10 +89,12 @@ margin: 0 auto;
 /* スマホ表示（2列） */
 @media (max-width: 600px) {
   .results {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 10px;
     padding: 20px;
     max-width: 1000px;
     margin: 0 auto;
   }
+
 }

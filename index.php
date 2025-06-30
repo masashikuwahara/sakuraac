@@ -4,7 +4,7 @@
 
 <!-- accumulation -->
 <?php include('partial/header.php') ?>
-version 3.0.0-alpha
+version 3.2.0-alpha
 <form method="GET" action="search.php" class="search-form">
   <div class="radio-group">
     <input type="radio" id="member" class="option-input" name="select" value="member" checked>

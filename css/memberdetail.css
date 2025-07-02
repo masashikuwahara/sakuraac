@@ -96,6 +96,12 @@
   line-height: 1.6;
 }
 
+.insta {
+  position: relative;
+  top: 10px;
+  width: 30px;
+}
+
 .extra-info {
   font-size: 0.9rem;
   color: #666;
@@ -133,7 +139,25 @@ a:hover {
   }
 
   .member-image {
-    flex: 0 0 360px;
+    margin: 0 20px;        /* 左右マージン */
+    max-width: 100%;       /* 親に合わせて幅を制限 */
+    box-sizing: border-box;
+  }
+
+  .member-image img {
+    width: 100%;           /* 親の幅にフィットさせる */
+    height: auto;          /* 縦横比を維持 */
+    max-width: 360px;      /* 最大幅は360px */
+    display: block;        /* 下の余白防止のため */
+    margin: 0 auto;        /* 画像を中央寄せ */
+  }
+
+  .pic {
+    width: 100%;
+    height: auto;
+    max-width: 360px;
+    display: block;
+    margin: 0 auto;
   }
 
   .member-info {

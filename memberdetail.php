@@ -43,7 +43,7 @@ $member_blog = $mem['blog'];
         }
         else
         {
-          $disp_image='<img style="width:360px;" src="images/'.$member_image.'" class="pic" >';
+          $disp_image='<img src="images/'.$member_image.'" class="pic" >';
         }
     }
     catch (Exception $e)
@@ -84,7 +84,7 @@ $member_blog = $mem['blog'];
           <p><a href="<?php echo $member_blog; ?>" target="_blank">ブログ</a></p>
         <?php endif; ?>
         <?php if($member_sns): ?>
-          <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank">ここにマーク</a></p>
+          <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank"><img src="photos/instagramlogo.png" alt="instagram" class="insta" ></a></p>
         <?php endif; ?>
         <p>キャラクター：<?php echo nl2br(htmlspecialchars($member_introduction)); ?></p>
       </div>

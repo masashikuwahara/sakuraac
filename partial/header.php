@@ -4,7 +4,7 @@
   <div id="app">
     <header class="site-header">
       <div class="container">
-      <a href="index.php"><h1 class="logo">櫻坂46データベース(仮)</h1></a>
+      <a href="index.php"><h1 class="logo">SAKURA ACCUMULATION</h1></a>
         <nav :class="{'nav-open': isOpen}">
           <ul>
             <li><a href="members.php">メンバー</a></li>

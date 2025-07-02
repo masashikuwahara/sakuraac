@@ -1,10 +1,9 @@
 <?php include('partial/top.php') ?>
 
-<title>櫻坂46データベースサイト(仮)</title>
+<title>SAKURA ACCUMULATION</title>
 
-<!-- accumulation -->
 <?php include('partial/header.php') ?>
-version 3.2.0-alpha
+version 1.1.0-Beta
 <form method="GET" action="search.php" class="search-form">
   <div class="radio-group">
     <input type="radio" id="member" class="option-input" name="select" value="member" checked>

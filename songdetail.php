@@ -132,8 +132,8 @@ try {
               <?php endif; ?>
               <p>
                 <?php echo htmlspecialchars($member['name']); ?>
-                <?php if ($member['is_center'] == 1): ?>
-                  <span class="center-label">（センター）</span>
+                <?php if ($member['is_center'] === 1): ?>
+                  <div class="center-label">（センター）</div>
                 <?php endif; ?>
               </p>
             </a>

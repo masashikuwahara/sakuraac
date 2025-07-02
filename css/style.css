@@ -107,6 +107,11 @@ nav {
     padding: 0; /* 横ズレの原因を除去 */
   }
 
+  .logo {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
   .hamburger {
     display: flex;
   }

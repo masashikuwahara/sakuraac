@@ -5,6 +5,26 @@ body {
   color: #333;
 }
 
+    #back-to-top {
+      display: none; /* 最初は非表示 */
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #back-to-top:hover {
+      background-color: #0056b3;
+    }
+
 .site-header {
   background-color: #f19db5;
   padding: 10px 20px;

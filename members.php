@@ -94,6 +94,9 @@
   }
   ?>
 </main>
+
+<button id="back-to-top" title="トップへ戻る">↑</button>
+
 <script src="script/sort.js"></script>
 
 <?php include('partial/footer.php') ?>

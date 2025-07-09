@@ -3,7 +3,7 @@
 <title>SAKURA ACCUMULATION</title>
 
 <?php include('partial/header.php') ?>
-version 1.1.1-Beta
+version 1.2.0-Beta
 <form method="GET" action="search.php" class="search-form">
   <div class="radio-group">
     <input type="radio" id="member" class="option-input" name="select" value="member" checked>

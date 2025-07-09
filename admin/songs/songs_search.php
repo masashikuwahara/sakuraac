@@ -30,25 +30,25 @@
 </header>
   <main>
     <?php
-    echo '<form method="post" action="members_branch.php">';
+    echo '<form method="post" action="songs_branch.php">';
     if($s != ''){
       echo "<div class='s'> 「{$s}」の検索結果</div>";
     }
 
     if($_GET["s"] != ''){
-        $stmt=$dbh->prepare("SELECT * FROM members WHERE name like '%$my_sea%'");
+        $stmt=$dbh->prepare("SELECT * FROM songs WHERE title like '%$my_sea%'");
         $stmt->execute();
         $t = $stmt->rowCount();
         if($t > 0){
           echo "<div class='success'>{$t}件見つかりました</div></br>";
           while ($r = $stmt->fetch()){
             echo '<input type="radio" name="id" value="'.$r['id'].'">';
-            echo $r['name']. '<br>';
+            echo $r['title']. '<br>';
           } 
           echo '<br/>';
           echo '<input class="btn" type="submit" name="disp" value="参照">';
           echo '<input class="btn" type="submit" name="edit" value="修正">';
-          echo '<input disabled class="btn" type="submit" name="delete" value="削除">';
+          echo '<input disabled class="btn disabled" type="submit" name="delete" value="削除">';
         }else{
           echo '<div class="result">そのキーワードでは見つかりませんでした</div>';
         }

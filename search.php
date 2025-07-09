@@ -74,13 +74,4 @@
   </div>
 </form>
 
-
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <script>
-  ScrollReveal().reveal('.result-card',{
-    duration: 800,
-    viewFactor: 0.2,
-  });
-  </script>
-
 <?php include('partial/footer.php') ?>

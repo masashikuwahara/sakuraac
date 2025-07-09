@@ -1,5 +1,5 @@
 </head>
-<!-- accumulation -->
+
 <body>
   <div id="app">
     <header class="site-header">

@@ -123,7 +123,7 @@ try {
   <div class="song-details">
     <div class="extra-info">
       <h2>参加メンバー</h2>
-      <div class="member-flex">
+      <div class="member-list">
         <?php foreach ($members as $member): ?>
           <div class="member-card">
             <a href="memberdetail.php?id=<?php echo $member['id']; ?>">

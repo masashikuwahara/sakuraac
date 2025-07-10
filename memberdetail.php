@@ -51,6 +51,22 @@ $member_blog = $mem['blog'];
         echo'ただいま障害により大変ご迷惑をおかけしております。';
         exit();
     }
+
+    // 参加曲数を算出する部分
+    $sql = "SELECT COUNT(*) AS total_songs,
+      SUM(CASE WHEN is_center = 1 THEN 1 ELSE 0 END) AS center_count,
+      SUM(CASE WHEN songs.titlesong = 1 THEN 1 ELSE 0 END) AS titlesong_count
+      FROM song_members
+      INNER JOIN songs ON song_members.song_id = songs.id
+      WHERE song_members.member_id = ?
+      ";
+      $stmt = $dbh->prepare($sql);
+      $stmt->execute([$member_id]);
+      $stats = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $total_songs = $stats['total_songs'];
+      $center_count = $stats['center_count'];
+      $titlesong_count = $stats['titlesong_count'];
 ?>
 <div class="member-details">
   <h1><?php echo $member_name; ?></h1>
@@ -71,6 +87,9 @@ $member_blog = $mem['blog'];
         <p>血液型：<?php echo $member_blood; ?></p>
         <p>出身地：<?php echo $member_birthplace; ?></p>
         <p>加入：<?php echo $member_grade; ?></p>
+        <p>参加楽曲数：<?php echo $total_songs; ?>曲</p>
+        <p>表題曲参加数：<?php echo $titlesong_count; ?>曲</p>
+        <p>センター回数：<?php echo $center_count; ?>回</p>
       </div>
 
       <div class="penlight">
@@ -92,13 +111,13 @@ $member_blog = $mem['blog'];
   </div>
   <?php
   // 例: 上の方で member_id を取得済みとしている想定
-  $sql = 'SELECT songs.id, songs.title, song_members.is_center
+  $sql = "SELECT songs.id, songs.title, song_members.is_center
     FROM song_members
     JOIN songs ON song_members.song_id = songs.id
     WHERE song_members.member_id = ?
-    ORDER BY songs.id ASC';
+    ORDER BY songs.id ASC";
   $stmt = $dbh->prepare($sql);
-  $stmt->execute([$member_id]); // ここで $id は該当メンバーのID
+  $stmt->execute([$member_id]);
   $songs = $stmt->fetchAll(PDO::FETCH_ASSOC);
   ?>
 

@@ -146,24 +146,8 @@ $member_blog = $mem['blog'];
       <p>参加楽曲は見つかりませんでした。</p>
     <?php endif; ?>
   </div>
+</div>
 
-  <script>
-    function showAllSongs() {
-      document.querySelectorAll('.song-item').forEach(item => {
-        item.style.display = 'list-item';
-      });
-    }
-
-    function showCenterSongs() {
-      document.querySelectorAll('.song-item').forEach(item => {
-        if (item.classList.contains('center-song')) {
-          item.style.display = 'list-item';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-  </script>
-
-
-  <?php require('partial/footer.php'); ?>
+<button id="back-to-top" title="トップへ戻る">TOP</button>
+<script src="script/song.js"></script>
+<?php require('partial/footer.php'); ?>

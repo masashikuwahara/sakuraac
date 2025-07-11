@@ -14,9 +14,12 @@ body {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 50%;
-  padding: 20px 25px;
-  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #f87171; /* 任意の色 */
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
+  padding: 20px 25px 5PX 25PX;
+  font-size: 10px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }

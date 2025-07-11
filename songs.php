@@ -83,5 +83,5 @@
   }
   ?>
 </main>
-<button id="back-to-top" title="トップへ戻る">↑</button>
+<button id="back-to-top" title="トップへ戻る">TOP</button>
 <?php include('partial/footer.php') ?>

@@ -20,7 +20,7 @@ session();
         $dbh->query('SET NAMES utf8');
         $sql = 'SELECT name, furigana, nickname, birth, constellation, height,
         blood, birthplace, color1, colorname1, color2, colorname2, sns,
-        graduation, blog
+        graduation, introduction, blog
         FROM members WHERE id=?';
         $stmt = $dbh->prepare($sql);
         $data[]=$members_id;
@@ -41,6 +41,7 @@ session();
         $members_colorname2 = $mem['colorname2'];
         $members_sns = $mem['sns'];
         $members_graduation = $mem['graduation'];
+        $members_introduction = $mem['introduction'];
         $members_blog = $mem['blog'];
 
         $dbh = null;
@@ -85,8 +86,10 @@ session();
       <input class="tex" type="text" name="colorname2" value="<?php echo $members_colorname2; ?>"><br /><br />
       SNS<br />
       <input class="tex" type="text" name="sns" value="<?php echo $members_sns; ?>"><br /><br />
-      在籍or卒業<br />
+      在籍or卒業(在籍：0、卒業：1)<br />
       <input class="tex" type="text" name="graduation" value="<?php echo $members_graduation; ?>"><br /><br />
+      キャラクター<br />
+      <textarea name="introduction" class="tex"><?php echo $members_introduction; ?></textarea><br /><br />
       ブログ<br />
       <input class="tex" type="text" name="blog" value="<?php echo $members_blog; ?>"><br /><br />
       <input class="btn" type="submit" value="次のページへ">

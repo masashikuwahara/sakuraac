@@ -41,7 +41,7 @@
       echo '<h2 class="section-title">' . $label . '</h2>';
 
       foreach ($grades as $grade) {
-        $sql = "SELECT id, name, image, furigana, birth, blood, height, grade FROM members WHERE graduation = :grad AND grade = :grade ORDER BY $sort_column ASC";
+        $sql = "SELECT id, name, image, furigana, birth, blood, height, grade, updated_at FROM members WHERE graduation = :grad AND grade = :grade ORDER BY $sort_column ASC";
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':grad', $graduation, PDO::PARAM_INT);
         $stmt->bindValue(':grade', $grade, PDO::PARAM_STR);
@@ -53,12 +53,23 @@
           echo '<div class="member-list">';
 
           foreach ($members as $rec) {
+            $updated_at = $rec['updated_at'];
+            $now = new DateTime();
+            $updated = new DateTime($updated_at);
+            $diff = $now->diff($updated);
+            $isNew = ($diff->days <= 3);
+
+            
             echo '<div class="member-card">';
             echo '<a href="memberdetail.php?id=' . $rec['id'] . '">';
             if ($rec['image'] !== '') {
               echo '<img src="images/' . htmlspecialchars($rec['image']) . '" alt="' . htmlspecialchars($rec['name']) . '">';
             }
-            echo '<p>' . htmlspecialchars($rec['name']) . '</p>';
+            echo '<p>' . htmlspecialchars($rec['name']) ;
+            if ($isNew) {
+              echo " <div class='new-badge' style='color: crimson; font-weight: bold;'>NEW!</div>";
+            }
+            echo '</p>';
 
             if ($display_field) {
               echo '<p class="extra-info">';

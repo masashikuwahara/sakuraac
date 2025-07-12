@@ -67,6 +67,39 @@ $member_blog = $mem['blog'];
       $total_songs = $stats['total_songs'];
       $center_count = $stats['center_count'];
       $titlesong_count = $stats['titlesong_count'];
+
+
+    // 最新ブログのタイトルを取得
+    if($member_blog) {
+    // HTML取得
+    $html = file_get_contents($member_blog);
+    libxml_use_internal_errors(true);
+    $doc = new DOMDocument();
+    $doc->loadHTML($html);
+    $xpath = new DOMXPath($doc);
+
+    // col-l-wrap の中の unit を取得
+    $units = $xpath->query('//div[contains(@class, "col-l-wrap")]//div[contains(@class, "member-blog-listm")]');
+
+    $latestDate = null;
+    $latestTitle = null;
+
+    foreach ($units as $unit) {
+        // 各 unit の中から日付とタイトルを取得
+        $dateNode = $xpath->query('.//p[contains(@class, "date wf-a")]', $unit)->item(0);
+        $titleNode = $xpath->query('.//h3[contains(@class, "title")]', $unit)->item(0);
+
+        if ($dateNode && $titleNode) {
+            $dateStr = trim($dateNode->nodeValue);
+            $date = DateTime::createFromFormat('Y/m/d', $dateStr);
+
+            if ($date && ($latestDate === null || $date > $latestDate)) {
+                $latestDate = $date;
+                $latestTitle = trim($titleNode->nodeValue);
+            }
+        }
+    }
+    }
 ?>
 <div class="member-details">
   <h1><?php echo $member_name; ?></h1>
@@ -100,7 +133,7 @@ $member_blog = $mem['blog'];
 
       <div class="info">
         <?php if($member_blog): ?>
-          <p><a href="<?php echo $member_blog; ?>" target="_blank">ブログ</a></p>
+          <p>最新ブログ：<a href="<?php echo $member_blog; ?>" target="_blank"><?php echo $latestTitle; ?> </a></p>
         <?php endif; ?>
         <?php if($member_sns): ?>
           <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank"><img src="photos/instagramlogo.png" alt="instagram" class="insta" ></a></p>

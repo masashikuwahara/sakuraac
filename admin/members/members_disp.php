@@ -8,7 +8,7 @@ require('../../connect.php');
 $dbh->query('SET NAMES utf8');
 $sql = 'SELECT name, furigana, nickname, birth, constellation, height,
 blood,birthplace, grade, color1, colorname1, color2, colorname2, sns,
-image, graduation, blog FROM members WHERE id=?';
+image, graduation, introduction, blog FROM members WHERE id=?';
 $stmt = $dbh->prepare($sql);
 $data[]=$members_id;
 $stmt->execute($data);
@@ -30,6 +30,7 @@ $members_colorname2 = $mem['colorname2'];
 $members_sns = $mem['sns'];
 $members_image = $mem['image'];
 $members_graduation = $mem['graduation'];
+$members_introduction = $mem['introduction'];
 $members_blog = $mem['blog'];
 ?>
 <!DOCTYPE html>
@@ -113,6 +114,9 @@ $members_blog = $mem['blog'];
                     echo "卒業";
                 }
                 ?>
+                <br />
+                <h2>キャラクター</h2>
+                <?php echo $members_introduction;?>
                 <br />
                 <h2>ブログ</h2>
                 <?php echo $members_blog;?>

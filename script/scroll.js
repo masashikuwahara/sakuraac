@@ -1,13 +1,13 @@
+const button = document.getElementById("back-to-top");
+
 window.addEventListener("scroll", function () {
-  const button = document.getElementById("back-to-top");
   if (window.pageYOffset > 300) {
-    button.style.display = "block";
+    button.classList.add("show");
   } else {
-    button.style.display = "none";
+    button.classList.remove("show");
   }
 });
 
-// クリックでトップに戻る
-document.getElementById("back-to-top").addEventListener("click", function () {
+button.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });

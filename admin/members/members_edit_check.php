@@ -40,6 +40,7 @@ session();
     $members_colorname2 = $mem['colorname2'];
     $members_sns = $mem['sns'];
     $members_graduation = $mem['graduation'];
+    $members_introduction = $mem['introduction'];
     $members_blog = $mem['blog'];
 
     if($members_name === '')
@@ -198,6 +199,17 @@ session();
         echo'<br />';
     }  
 
+    if($members_introduction === '')
+    {
+        echo'<p style="color:#ff0000">キャラクターが入力されていません。</p><br />';
+    }
+    else
+    {
+        echo'キャラクター:';
+        echo $members_introduction;
+        echo'<br />';
+    }  
+
     if($members_blog === '')
     {
         echo'<p style="color:#ff0000">ブログが入力されていません。</p><br />';
@@ -234,6 +246,7 @@ session();
         echo'<input type="hidden" name="colorname2" value="'.$members_colorname2.'">';
         echo'<input type="hidden" name="sns" value="'.$members_sns.'">';
         echo'<input type="hidden" name="graduation" value="'.$members_graduation.'">';
+        echo'<input type="hidden" name="introduction" value="'.$members_introduction.'">';
         echo'<input type="hidden" name="blog" value="'.$members_blog.'">';
         echo'<br />';
         echo'<input class="btn" type="button" onclick="history.back()" value="戻る">&nbsp;';

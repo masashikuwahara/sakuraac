@@ -32,7 +32,7 @@
     echo '<h2 class="section-title">メンバー</h2>';
     echo '<div class="member-list">';
 
-    $sql = 'SELECT id, name, image FROM members';
+    $sql = 'SELECT id, name, image, updated_at FROM members';
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,11 +42,19 @@
     $selected_members = array_slice($members, 0, 8);
 
     foreach ($selected_members as $rec) {
+      $updated_at = $rec['updated_at'];
+      $now = new DateTime();
+      $updated = new DateTime($updated_at);
+      $diff = $now->diff($updated);
+      $isNew = ($diff->days <= 3);
+
       $img_name = $rec['image'] === '' ? '' : '<img src="images/'.$rec['image'].'" alt="'.$rec['name'].'">';
-      echo '<div class="member-card">'.
-            '<a href="memberdetail.php?id='.$rec['id'].'">'.
-              $img_name.'<p>'.$rec['name'].'</p></a>'.
-            '</div>';
+      echo '<div class="member-card">';
+      echo '<a href="memberdetail.php?id='.$rec['id'].'">'.$img_name.'<p>'.$rec['name'].'</p></a>';
+      if ($isNew) {
+        echo " <div class='new-badge' style='color: crimson; font-weight: bold;'>NEW!</div>";
+      }
+      echo '</div>';
     }
 
     echo '</div>';

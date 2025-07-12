@@ -34,13 +34,14 @@ session();
         $members_colorname2 = $mem['colorname2'];
         $members_sns = $mem['sns'];
         $members_graduation = $mem['graduation'];
+        $members_introduction = $mem['introduction'];
         $members_blog = $mem['blog'];
 
         require('../../connect.php');
 
         $sql = 'UPDATE members SET name=?, furigana=?, nickname=?, birth=?, constellation=?, 
         height=?,blood=?, birthplace=?, color1=?, colorname1=?, color2=?, colorname2=?, sns=?,
-        graduation=?, blog=? WHERE id=?';
+        graduation=?, introduction=?, blog=? WHERE id=?';
         $stmt = $dbh->prepare($sql);
         $data[] = $members_name;
         $data[] = $members_furigana;
@@ -56,6 +57,7 @@ session();
         $data[] = $members_colorname2;
         $data[] = $members_sns;
         $data[] = $members_graduation;
+        $data[] = $members_introduction;
         $data[] = $members_blog;
         $data[] = $members_id;
         $stmt->execute($data);

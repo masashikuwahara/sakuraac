@@ -6,7 +6,6 @@ body {
 }
 
 #back-to-top {
-  display: none; /* 最初は非表示 */
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -18,14 +17,26 @@ body {
   height: 50px;
   background-color: #f87171; /* 任意の色 */
   clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
-  padding: 20px 25px 5PX 25PX;
+  padding: 25px 25px 5PX 25PX;
   font-size: 10px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px); /* ← ふわっと感のための初期位置 */
+  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s linear 0.8s; /* visibilityは遅延させる */
+  z-index: 1000;
 }
 
 #back-to-top:hover {
   background-color: #0056b3;
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* 表示時に元の位置に戻す */
+  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s; /* visibilityは即時表示 */
 }
 
 .site-header {

@@ -8,7 +8,7 @@ session();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <furigana>記事修正</furigana>
+    <title>記事修正</title>
 </head>
 <body>
     <?php

@@ -11,23 +11,65 @@
     <a href="members.php?sort=birth">誕生日順</a>
     <a href="members.php?sort=blood">血液型順</a>
     <a href="members.php?sort=height">身長順</a>
+    <a href="members.php?sort=songs">参加楽曲数順</a>
+    <a href="members.php?sort=center">センター回数順</a>
+    <a href="members.php?sort=titlesong">表題曲参加数順</a>
     <a href="members.php">デフォルトに戻す</a>
   </div>
 
 <?php
 $sort_column = 'id';
 $display_field = '';
+$sort = $_GET['sort'] ?? '';
+$sort_sql = '';
 $grades = ['一期生', '二期生', '三期生', '四期生'];
-$allowed_sorts = ['furigana', 'birth', 'blood', 'height'];
+$allowed_sorts = ['furigana', 'birth', 'blood', 'height', 'songs', 'center', 'titlesong'];
 
-if (isset($_GET['sort'])) {
-  $sort = $_GET['sort'];
-  if (in_array($sort, $allowed_sorts)) {
-    $sort_column = ($sort === 'blood') 
-      ? "FIELD(blood, 'A型', 'B型', 'O型', 'AB型', '不明')" 
-      : $sort;
-    $display_field = $sort;
+$sort_labels = [
+  'furigana' => '50音順',
+  'birth' => '誕生日順',
+  'blood' => '血液型順',
+  'height' => '身長順',
+  'songs' => '参加楽曲数順',
+  'center' => 'センター回数順',
+  'titlesong' => '表題曲参加数順'
+];
+
+if (isset($sort_labels[$sort])) {
+  echo '<p class="sort-info">現在は「' . $sort_labels[$sort] . '」でソートしています。</p>';
+}
+
+if (in_array($sort, $allowed_sorts)) {
+  if ($sort === 'blood') {
+    $sort_column = "FIELD(blood, 'A型', 'B型', 'O型', 'AB型', '不明')";
+    $sort_sql = "SELECT * FROM members WHERE graduation = :grad ORDER BY $sort_column";
+  } elseif ($sort === 'songs') {
+    $sort_sql = "SELECT m.*, COUNT(sm.song_id) AS count 
+            FROM members m
+            LEFT JOIN song_members sm ON m.id = sm.member_id
+            WHERE m.graduation = :grad
+            GROUP BY m.id
+            ORDER BY count DESC";
+  } elseif ($sort === 'center') {
+    $sort_sql = "SELECT m.*, SUM(sm.is_center) AS count 
+            FROM members m
+            LEFT JOIN song_members sm ON m.id = sm.member_id
+            WHERE m.graduation = :grad
+            GROUP BY m.id
+            ORDER BY count DESC";
+  } elseif ($sort === 'titlesong') {
+    $sort_sql = "SELECT m.*, SUM(CASE WHEN s.titlesong = 1 THEN 1 ELSE 0 END) AS count
+            FROM members m
+            LEFT JOIN song_members sm ON m.id = sm.member_id
+            LEFT JOIN songs s ON sm.song_id = s.id
+            WHERE m.graduation = :grad
+            GROUP BY m.id
+            ORDER BY count DESC";
+  } else {
+    $sort_column = $sort;
+    $sort_sql = "SELECT * FROM members WHERE graduation = :grad ORDER BY $sort_column";
   }
+  $display_field = $sort;
 }
 
 try {
@@ -44,7 +86,7 @@ try {
               FROM members 
               WHERE graduation = :grad 
               ORDER BY $sort_column ASC";
-      $stmt = $dbh->prepare($sql);
+      $stmt = $dbh->prepare($sort_sql);
       $stmt->bindValue(':grad', $graduation, PDO::PARAM_INT);
       $stmt->execute();
       $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -85,6 +127,15 @@ try {
                 break;
               case 'height':
                 echo htmlspecialchars($rec['height']) . 'cm';
+                break;
+              case 'songs':
+                echo '参加楽曲数：' . htmlspecialchars($rec['count']) . '曲';
+                break;
+              case 'center':
+                echo 'センター回数：' . htmlspecialchars($rec['count']) . '回';
+                break;
+              case 'titlesong':
+                echo '表題曲参加数：' . htmlspecialchars($rec['count']) . '曲';
                 break;
             }
             echo '</p>';

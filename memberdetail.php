@@ -138,7 +138,9 @@ $member_blog = $mem['blog'];
         <?php if($member_sns): ?>
           <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank"><img src="photos/instagramlogo.png" alt="instagram" class="insta" ></a></p>
         <?php endif; ?>
-        <p>キャラクター：<?php echo nl2br(htmlspecialchars($member_introduction)); ?></p>
+        <?php if($member_introduction): ?>
+          <p>キャラクター：<?php echo nl2br(htmlspecialchars($member_introduction)); ?></p>
+        <?php endif; ?>
       </div>
     </div>
   </div>

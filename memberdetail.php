@@ -132,8 +132,10 @@ $member_blog = $mem['blog'];
       </div>
 
       <div class="info">
-        <?php if($member_blog): ?>
+        <?php if(!empty($latestTitle)): ?>
           <p>最新ブログ：<a href="<?php echo $member_blog; ?>" target="_blank"><?php echo $latestTitle; ?> </a></p>
+        <?php else: ?>
+          <p>最新ブログ：<a href="<?php echo $member_blog; ?>" target="_blank"><?php echo $member_name; ?>のブログへ</a></p>
         <?php endif; ?>
         <?php if($member_sns): ?>
           <p>SNS：<a href="<?php echo $member_sns; ?>" target="_blank"><img src="photos/instagramlogo.png" alt="instagram" class="insta" ></a></p>

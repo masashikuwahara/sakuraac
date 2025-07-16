@@ -14,44 +14,102 @@
     <a href="members.php">デフォルトに戻す</a>
   </div>
 
-  <?php
-  $sort_column = 'id';
-  $display_field = '';
-  $grades = ['一期生', '二期生', '三期生', '四期生'];
+<?php
+$sort_column = 'id';
+$display_field = '';
+$grades = ['一期生', '二期生', '三期生', '四期生'];
+$allowed_sorts = ['furigana', 'birth', 'blood', 'height'];
 
-  if (isset($_GET['sort'])) {
-    $allowed_sorts = ['furigana', 'birth', 'blood', 'height'];
-    $sort = $_GET['sort'];
-    if (in_array($sort, $allowed_sorts)) {
-      if ($sort === 'blood') {
-        $sort_column = "FIELD(blood, 'A', 'B', 'O', 'AB')";
-      } else {
-        $sort_column = $sort;
-      }
-      $display_field = $sort;
-    }
+if (isset($_GET['sort'])) {
+  $sort = $_GET['sort'];
+  if (in_array($sort, $allowed_sorts)) {
+    $sort_column = ($sort === 'blood') 
+      ? "FIELD(blood, 'A型', 'B型', 'O型', 'AB型', '不明')" 
+      : $sort;
+    $display_field = $sort;
   }
+}
 
-  try {
-    require('connect.php');
-    $dbh->query('SET NAMES utf8');
+try {
+  require('connect.php');
+  $dbh->query('SET NAMES utf8');
 
-    foreach ([0 => '在籍メンバー', 1 => '卒業メンバー'] as $graduation => $label) {
-      echo '<section>';
-      echo '<h2 class="section-title">' . $label . '</h2>';
+  foreach ([0 => '在籍メンバー', 1 => '卒業メンバー'] as $graduation => $label) {
+    echo '<section>';
+    echo '<h2 class="section-title">' . $label . '</h2>';
 
+    if ($display_field) {
+      // ★ ソートあり：期生分けずに全メンバー取得
+      $sql = "SELECT id, name, image, furigana, birth, blood, height, grade, updated_at 
+              FROM members 
+              WHERE graduation = :grad 
+              ORDER BY $sort_column ASC";
+      $stmt = $dbh->prepare($sql);
+      $stmt->bindValue(':grad', $graduation, PDO::PARAM_INT);
+      $stmt->execute();
+      $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      if ($members) {
+        echo '<div class="member-list">';
+        foreach ($members as $rec) {
+          $updated_at = $rec['updated_at'];
+          $now = new DateTime();
+          $updated = new DateTime($updated_at);
+          $diff = $now->diff($updated);
+          $isNew = ($diff->days <= 3);
+
+          echo '<div class="member-card">';
+          echo '<a href="memberdetail.php?id=' . $rec['id'] . '">';
+          if ($rec['image']) {
+            echo '<img src="images/' . htmlspecialchars($rec['image']) . '" alt="' . htmlspecialchars($rec['name']) . '">';
+          }
+          echo '<p>' . htmlspecialchars($rec['name']);
+          if ($isNew) {
+            echo " <span class='new-badge' style='color: crimson; font-weight: bold;'>NEW!</span>";
+          }
+          echo '</p>';
+
+          // 追加情報（ソート種別に応じて）
+          if ($display_field) {
+            echo '<p class="extra-info">';
+            switch ($display_field) {
+              case 'furigana':
+                echo htmlspecialchars($rec['furigana']);
+                break;
+              case 'birth':
+                $date = new DateTime($rec['birth']);
+                echo $date->format('Y年n月j日');
+                break;
+              case 'blood':
+                echo htmlspecialchars($rec['blood']);
+                break;
+              case 'height':
+                echo htmlspecialchars($rec['height']) . 'cm';
+                break;
+            }
+            echo '</p>';
+          }
+
+          echo '</a></div>';
+        }
+        echo '</div>'; // .member-list
+      }
+    } else {
+      // ★ ソートなし：期生で分けて表示
       foreach ($grades as $grade) {
-        $sql = "SELECT id, name, image, furigana, birth, blood, height, grade, updated_at FROM members WHERE graduation = :grad AND grade = :grade ORDER BY $sort_column ASC";
+        $sql = "SELECT id, name, image, furigana, birth, blood, height, grade, updated_at 
+                FROM members 
+                WHERE graduation = :grad AND grade = :grade 
+                ORDER BY id ASC";
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':grad', $graduation, PDO::PARAM_INT);
         $stmt->bindValue(':grade', $grade, PDO::PARAM_STR);
         $stmt->execute();
-
         $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (count($members) > 0) {
+
+        if ($members) {
           echo '<h3 class="grade-title">' . htmlspecialchars($grade) . '</h3>';
           echo '<div class="member-list">';
-
           foreach ($members as $rec) {
             $updated_at = $rec['updated_at'];
             $now = new DateTime();
@@ -59,51 +117,33 @@
             $diff = $now->diff($updated);
             $isNew = ($diff->days <= 3);
 
-            
             echo '<div class="member-card">';
             echo '<a href="memberdetail.php?id=' . $rec['id'] . '">';
-            if ($rec['image'] !== '') {
+            if ($rec['image']) {
               echo '<img src="images/' . htmlspecialchars($rec['image']) . '" alt="' . htmlspecialchars($rec['name']) . '">';
             }
-            echo '<p>' . htmlspecialchars($rec['name']) ;
+            echo '<p>' . htmlspecialchars($rec['name']);
             if ($isNew) {
-              echo " <div class='new-badge' style='color: crimson; font-weight: bold;'>NEW!</div>";
+              echo " <span class='new-badge' style='color: crimson; font-weight: bold;'>NEW!</span>";
             }
             echo '</p>';
-
-            if ($display_field) {
-              echo '<p class="extra-info">';
-              switch ($display_field) {
-                case 'furigana':
-                  echo htmlspecialchars($rec['furigana']);
-                  break;
-                case 'birth':
-                  $date = new DateTime($rec['birth']);
-                  echo $date->format('Y年n月j日');
-                  break;
-                case 'blood':
-                  echo htmlspecialchars($rec['blood']);
-                  break;
-                case 'height':
-                  echo htmlspecialchars($rec['height']) . 'cm';
-                  break;
-              }
-              echo '</p>';
-            }
             echo '</a></div>';
           }
           echo '</div>'; // .member-list
         }
       }
-      echo '</section>';
     }
 
-    $dbh = null;
-  } catch (Exception $e) {
-    echo 'ただいま障害により大変ご迷惑をお掛けしております。';
-    exit();
+    echo '</section>';
   }
-  ?>
+
+  $dbh = null;
+} catch (Exception $e) {
+  echo 'ただいま障害により大変ご迷惑をお掛けしております。';
+  exit();
+}
+?>
+
 </main>
 
 <script src="script/sort.js"></script>

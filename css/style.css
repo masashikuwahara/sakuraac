@@ -64,6 +64,11 @@ body {
   color: #fff;
 }
 
+.container a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
 nav ul {
   list-style: none;
   display: flex;
@@ -145,6 +150,11 @@ nav {
     margin: 0;
     font-size: 1.3rem;
   }
+
+  .container a:hover {
+  text-decoration: none;
+  color: #fff;
+}
 
   .hamburger {
     display: flex;

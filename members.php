@@ -12,8 +12,8 @@
     <a href="members.php?sort=blood">血液型順</a>
     <a href="members.php?sort=height">身長順</a>
     <a href="members.php?sort=songs">参加楽曲数順</a>
-    <a href="members.php?sort=center">センター回数順</a>
     <a href="members.php?sort=titlesong">表題曲参加数順</a>
+    <a href="members.php?sort=center">センター回数順</a>
     <a href="members.php">デフォルトに戻す</a>
   </div>
 

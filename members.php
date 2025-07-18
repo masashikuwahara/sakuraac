@@ -164,7 +164,9 @@ try {
           foreach ($members as $rec) {
             $updated_at = $rec['updated_at'];
             $now = new DateTime();
+            $now->setTimezone(new DateTimeZone('Asia/Tokyo'));
             $updated = new DateTime($updated_at);
+            $updated->setTimezone(new DateTimeZone('Asia/Tokyo'));
             $diff = $now->diff($updated);
             $isNew = ($diff->days <= 3);
 

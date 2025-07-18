@@ -3,7 +3,7 @@
 <title>SAKURA ACCUMULATION</title>
 
 <?php include('partial/header.php') ?>
-<!-- version 1.6.1-Beta -->
+<!-- version 1.6.2-Beta -->
 <p style="text-align: center;">櫻坂46のメンバー情報と楽曲情報を集めたデータベースサイトです</p>
 <form method="GET" action="search.php" class="search-form">
   <div class="radio-group">
@@ -15,7 +15,7 @@
   </div>
   
   <div class="search-input-group">
-    <input class="search-input" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+    <input class="search-input" type="text" name="s" placeholder="メンバー名、楽曲名で検索">
     <button type="submit" class="search-button">検索</button>
   </div>
 </form>

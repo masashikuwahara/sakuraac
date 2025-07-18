@@ -69,7 +69,7 @@
   </div>
   
   <div class="search-input-group">
-    <input class="search-input" type="text" name="s" placeholder="メンバー名、楽曲名を入力">
+    <input class="search-input" type="text" name="s" placeholder="メンバー名、楽曲で検索">
     <button type="submit" class="search-button">検索</button>
   </div>
 </form>

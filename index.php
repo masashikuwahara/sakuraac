@@ -1,10 +1,16 @@
-<?php include('partial/top.php') ?>
+<?php include __DIR__ .'/partial/top.php' ?>
 
 <title>SAKURA ACCUMULATION</title>
 
-<?php include('partial/header.php') ?>
+<?php include __DIR__ .'/partial/header.php' ?>
 
 <p style="text-align: center;">櫻坂46のメンバー情報と楽曲情報を集めたデータベースサイトです</p>
+<p style="text-align: center;">
+  <a href="https://kasumizaka46.com/" target="_blank">
+    日向坂46のデータベースサイトはこちら
+  </a>
+</p>
+
 <form method="GET" action="search.php" class="search-form">
   <div class="radio-group">
     <input type="radio" id="member" class="option-input" name="select" value="member" checked>
@@ -37,7 +43,7 @@
     $stmt->execute();
     $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // 配列をシャッフルして先頭7人を取得
+    // 配列をシャッフルして先頭8人を取得
     shuffle($members);
     $selected_members = array_slice($members, 0, 8);
 
@@ -50,7 +56,7 @@
 
       $img_name = $rec['image'] === '' ? '' : '<img src="images/'.$rec['image'].'" alt="'.$rec['name'].'">';
       echo '<div class="member-card">';
-      echo '<a href="memberdetail.php?id='.$rec['id'].'">'.$img_name.'<p>'.$rec['name'].'</p></a>';
+      echo '<a href="members/memberdetail.php?id='.$rec['id'].'">'.$img_name.'<p>'.$rec['name'].'</p></a>';
       if ($isNew) {
         echo " <div class='new-badge' style='color: crimson; font-weight: bold;'>NEW!</div>";
       }
@@ -59,7 +65,7 @@
 
     echo '</div>';
     echo '<div class="more-button-wrapper">'.
-            '<a href="members.php" class="more-button">もっと見る</a>'.
+            '<a href="members/" class="more-button">もっと見る</a>'.
          '</div>';
     echo '</section>';
     
@@ -74,14 +80,14 @@
     $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $dbh = null;
 
-    // 配列をシャッフルして先頭7曲を取得
+    // 配列をシャッフルして先頭8曲を取得
     shuffle($members);
     $selected_members = array_slice($members, 0, 8);
 
     foreach ($selected_members as $rec) {
       $img_name = $rec['photo'] === '' ? '' : '<img src="photos/'.$rec['photo'].'" alt="'.$rec['title'].'">';
       echo '<div class="song-card">'.
-            '<a href="songdetail.php?id='.$rec['id'].'">'.
+            '<a href="songs/songdetail.php?id='.$rec['id'].'">'.
               '<div class="song-image">'.$img_name.'</div>'.
               '<p class="song-title">'.$rec['title'].'</p>'.
             '</a>'.
@@ -90,7 +96,7 @@
 
     echo '</div>';
     echo '<div class="more-button-wrapper">'.
-            '<a href="songs.php" class="more-button">もっと見る</a>'.
+            '<a href="songs/" class="more-button">もっと見る</a>'.
           '</div>';
     echo '</section>';
   
@@ -102,4 +108,4 @@
 </main>
 
 <?php include('partial/footer.php') ?>
-<!-- version 1.0.0 -->
+<!-- version 2.0.0 -->

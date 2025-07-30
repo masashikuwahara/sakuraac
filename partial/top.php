@@ -16,5 +16,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <base href="/sakuraac/">
   <link rel="stylesheet" href="css/style.css">
   <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->

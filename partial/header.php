@@ -6,9 +6,10 @@
       <div class="container">
       <a href="index.php"><h1 class="logo">SAKURA ACCUMULATION</h1></a>
         <nav :class="{'nav-open': isOpen}">
+          <base href="/sakuraac/">
           <ul>
-            <li><a href="members.php">メンバー</a></li>
-            <li><a href="songs.php">楽曲一覧</a></li>
+            <li><a href="members/">メンバー</a></li>
+            <li><a href="songs/">楽曲一覧</a></li>
           </ul>
         </nav>
         <button class="hamburger" @click="toggleMenu">

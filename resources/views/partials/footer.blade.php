@@ -7,4 +7,3 @@
       {{-- <a href="#" class="hover:underline">YouTube</a> --}}
   </div>
 </footer>
-<!-- v.2.0.0 -->

@@ -13,7 +13,7 @@ class MemberController extends Controller
     public function index(Request $request)
 {
     $sort  = $request->input('sort', 'default');
-    $order = $request->input('order', 'asc');
+    $order = $request->input('order', 'desc');
 
     if ($sort === 'default') {
         $currentMembers   = Member::where('graduation', 0)->get()->groupBy('grade');
@@ -57,7 +57,7 @@ class MemberController extends Controller
 
             case 'blood':
                 $q->orderByRaw("FIELD(blood, 'A型','B型','O型','AB型','不明')")
-                  ->orderBy('furigana'); // 同順位の二次キーはお好みで
+                  ->orderBy('furigana');
                 break;
 
             default:
@@ -166,7 +166,7 @@ class MemberController extends Controller
         $songCount = $member->songs->count();
         $centerCount = $member->songs->where('pivot.is_center', true)->count(); // センター回数を取得
         $titlesongCount = $member->songs->where('titlesong', 1)->count(); // 選抜回数を取得
-        $radar = Member::with('skill')->find($id);
+        // $radar = Member::with('skill')->find($id);
         
         // レーダーチャート用データ（例: 各スキル 100 点満点）
         // $radarData = [

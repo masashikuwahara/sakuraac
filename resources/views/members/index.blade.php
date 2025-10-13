@@ -93,6 +93,9 @@
             'blood' => '血液型順',
             'birth'   => '誕生日順',
             'height'     => '身長順',
+            'songs'     => '参加楽曲順',
+            'titlesongs'     => '表題曲参加順',
+            'center'     => 'センター回数順',
         ];
         @endphp
 
@@ -160,7 +163,7 @@
                 <a href="{{ route('members.index', ['sort' => 'blood', 'order' => $order === 'asc' ? 'desc' : 'asc']) }}"
                     class="block px-4 py-2 text-sm text-white hover:bg-gray-100">血液型順</a>
 
-                <a href="{{ route('members.index', ['sort' => 'birthday', 'order' => $order === 'asc' ? 'desc' : 'asc']) }}"
+                <a href="{{ route('members.index', ['sort' => 'birth', 'order' => $order === 'asc' ? 'desc' : 'asc']) }}"
                     class="block px-4 py-2 text-sm text-white hover:bg-gray-100">誕生日順</a>
 
                 <a href="{{ route('members.index', ['sort' => 'height', 'order' => $order === 'asc' ? 'desc' : 'asc']) }}"

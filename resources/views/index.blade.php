@@ -150,7 +150,7 @@
     </div>
 
     <!-- 更新履歴 -->
-    <div class="mx-auto w-1/2 max-h-60 overflow-y-scroll bg-white p-4 shadow-md">
+    <div class="mx-auto w-4/5 max-h-60 overflow-y-scroll bg-white p-4 shadow-md">
         <div class="text-left inline-block w-full">
             @forelse ($logs as $log)
             <p class="text-sm leading-6">
@@ -240,5 +240,5 @@
         });
         })();
     </script>
-    <!-- v.2.0.1 -->
+    <!-- v.2.0.2 -->
 @endsection

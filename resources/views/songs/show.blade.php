@@ -159,7 +159,7 @@
             @endif
             
             <!-- 参加メンバー -->
-            @if (!empty($song->members))
+            {{-- @if (!empty($song->members))
             <section class="bg-white p-6 shadow-md mt-6">
                 <h3 class="text-xl font-bold text-gray-800">参加メンバー</h3>
                 <ul class="mt-2">
@@ -172,6 +172,47 @@
                         </li>
                     @endforeach
                 </ul>
+            </section>
+            @else
+            <p class="mt-4 text-gray-700">この楽曲にはまだ参加メンバーが登録されていません。</p>
+            @endif --}}
+            <!-- 参加メンバー（フォーメーション表示） -->
+            @if (!empty($song->members))
+            @php
+                // pivot_row, pivot_positionを基準にソートしてグループ化
+                $formation = $song->members->sortBy([
+                    fn($m) => $m->pivot->row,
+                    fn($m) => $m->pivot->position
+                ])->groupBy('pivot.row');
+            @endphp
+
+            <!-- 参加メンバー -->
+            <section class="bg-white p-6 shadow-md mt-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">参加メンバー（フォーメーション）</h3>
+
+                <div class="space-y-4 text-center">
+                    @foreach ($formation as $rowNumber => $members)
+                        <div class="flex justify-center flex-wrap gap-3 md:gap-6 ">
+                            @foreach ($members as $member)
+                                <div class="relative flex flex-col items-center w-12 sm:w-14 md:w-16 lg:w-20">
+                                    <a href="{{ route('members.show', $member->id) }}" class="hover:opacity-80 transition">
+                                        <img src="{{ asset('storage/images/' . ($member->image ?? 'images/noimage.jpg')) }}"
+                                            alt="{{ $member->name }}"
+                                            class="w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20 object-cover border-2 border-gray-300 shadow">
+                                    </a>
+                                    <div class="text-sm mt-1 font-semibold">
+                                        {{ $member->name }}
+                                    </div>
+                                    @if ($member->pivot->is_center)
+                                        <span class="absolute -bottom-3 text-xs text-red-500 font-bold bg-white px-1 rounded">
+                                            CENTER
+                                        </span>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
+                </div>
             </section>
             @else
             <p class="mt-4 text-gray-700">この楽曲にはまだ参加メンバーが登録されていません。</p>

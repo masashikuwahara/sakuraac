@@ -23,6 +23,7 @@ class SongController extends Controller
         $recordedSongs = Song::where('is_recorded', $song->is_recorded)
         ->where('id', '!=', $song->id)
         ->get();
-        return view('songs.show', compact('song', 'recordedSongs'));
+        $formation = $song->members->groupBy('pivot_row');
+        return view('songs.show', compact('song', 'recordedSongs', 'formation'));
     }
 }

@@ -16,7 +16,7 @@ class Member extends Model
     public function songs()
     {
         return $this->belongsToMany(Song::class, 'song_members')
-        ->withPivot('is_center');
+        ->withPivot('is_center', 'row', 'position');
     }
 
     public function skill()

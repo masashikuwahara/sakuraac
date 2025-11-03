@@ -16,7 +16,9 @@ class Song extends Model
     public function members()
     {
         return $this->belongsToMany(Member::class, 'song_members')
-        ->withPivot('is_center');
+        ->withPivot('is_center', 'row', 'position')
+        ->orderBy('pivot_row')
+        ->orderBy('pivot_position');
     }
 
     public function getIsRecentlyUpdatedAttribute()

@@ -105,7 +105,6 @@
         </a>
     </div>
     
-    
     <!-- 楽曲一覧（グリッド表示） -->
     <section class="mt-10 px-6">
         <h2 class="text-xl font-bold mb-4">楽曲</h2>
@@ -240,5 +239,5 @@
         });
         })();
     </script>
-    <!-- v.2.0.2 -->
+    <!-- v.2.1.0 -->
 @endsection

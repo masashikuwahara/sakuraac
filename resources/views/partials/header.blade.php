@@ -41,10 +41,39 @@
       </button>
 
       <!-- メニュー項目 -->
-      <ul class="flex flex-col space-y-6 text-xl">
+      {{-- <ul class="flex flex-col space-y-6 text-xl">
         <li><a href="{{ route('members.index') }}" class="hover:text-blue-600">メンバー一覧</a></li>
         <li><a href="{{ route('songs.index') }}" class="hover:text-blue-600">楽曲一覧</a></li>
-        {{-- <li><a href="{{ route('popular.index') }}" class="hover:text-blue-600">人気ページTOP20</a></li> --}}
+        <li><a href="{{ route('popular.index') }}" class="hover:text-blue-600">人気ページTOP20</a></li>
+      </ul> --}}
+      <ul class="flex flex-col space-y-8 text-3xl font-bold">
+        <li 
+          x-show="open"
+          x-transition:enter="transition ease-out duration-500 delay-100"
+          x-transition:enter-start="opacity-0 translate-y-4"
+          x-transition:enter-end="opacity-100 translate-y-0"
+        >
+          <a 
+            href="{{ route('members.index') }}" 
+            class="px-4 py-2 bg-blue-100 rounded-xl hover:bg-blue-200 hover:text-blue-700 transition"
+          >
+            メンバー一覧
+          </a>
+        </li>
+
+        <li 
+          x-show="open"
+          x-transition:enter="transition ease-out duration-500 delay-200"
+          x-transition:enter-start="opacity-0 translate-y-4"
+          x-transition:enter-end="opacity-100 translate-y-0"
+        >
+          <a 
+            href="{{ route('songs.index') }}" 
+            class="px-4 py-2 bg-pink-100 rounded-xl hover:bg-pink-200 hover:text-pink-700 transition"
+          >
+            楽曲一覧
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

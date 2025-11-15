@@ -158,24 +158,6 @@
                 </section>
             @endif
             
-            <!-- 参加メンバー -->
-            {{-- @if (!empty($song->members))
-            <section class="bg-white p-6 shadow-md mt-6">
-                <h3 class="text-xl font-bold text-gray-800">参加メンバー</h3>
-                <ul class="mt-2">
-                    @foreach ($song->members as $member)
-                        <li class="block text-lg font-semibold hover:text-blue-600">
-                            <a href="{{ route('members.show', $member->id) }}">{{ $member->name }}</a>
-                            @if ($member->pivot->is_center)
-                                <strong class="text-red-500">（センター）</strong>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-            @else
-            <p class="mt-4 text-gray-700">この楽曲にはまだ参加メンバーが登録されていません。</p>
-            @endif --}}
             <!-- 参加メンバー（フォーメーション表示） -->
             @if (!empty($song->members))
             @php
@@ -189,8 +171,9 @@
             <!-- 参加メンバー -->
             <section class="bg-white p-6 shadow-md mt-6">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">参加メンバー（フォーメーション）</h3>
+                <p class="mt-4 text-gray-700">ただいま編集中です。今しばらくお待ちください。</p>
 
-                <div class="space-y-4 text-center">
+                {{-- <div class="space-y-4 text-center">
                     @foreach ($formation as $rowNumber => $members)
                         <div class="flex justify-center flex-wrap gap-3 md:gap-6 ">
                             @foreach ($members as $member)
@@ -212,7 +195,7 @@
                             @endforeach
                         </div>
                     @endforeach
-                </div>
+                </div> --}}
             </section>
             @else
             <p class="mt-4 text-gray-700">この楽曲にはまだ参加メンバーが登録されていません。</p>
@@ -221,8 +204,8 @@
             <!-- 歌詞へのリンク -->
             @if (!empty($song->lyric))
             <section class="flex flex-col md:flex-row mt-8 bg-white p-6 shadow-md">
-                <div class="md:ml-8 mt-4 md:mt-0 ">
-                    <h3 class="text-xl font-semibold">歌詞はコチラ</h3>
+                <div class="md: mt-4 md:mt-0 ">
+                    <h3 class="text-xl font-semibold mb-3">歌詞はコチラ</h3>
                     <a href="{{($song->lyric) }}" target="_blank" rel="noopener noreferrer" class= "hover:text-blue-600">別リンクへ飛びます</a>
                 </div>
             </section>

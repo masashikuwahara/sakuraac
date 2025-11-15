@@ -101,21 +101,5 @@
         </div>
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">更新</button>
     </form>
-    カラー参考<br>
-    パステルブルー	#49BDF0br<br>
-    エメラルドグリーン	#00a968<br>
-    グリーン	#00a960<br>
-    パールグリーン	#98fb98<br>
-    ライトグリーン	#90ee90<br>
-    イエロー	#ffdc00<br>
-    オレンジ	#ffa500<br>
-    レッド	#ff0000<br>
-    ホワイト	#ffffff<br>
-    サクラピンク	#fceeeb<br>
-    ピンク	#FFC0CB<br>
-    パッションピンク	#fc0fc0<br>
-    バイオレット	#5a4498<br>
-    パープル	#9b72b0<br>
-    ブルー	#0000ff<br>
 </main>
 @endsection

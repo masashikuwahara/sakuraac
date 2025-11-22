@@ -33,14 +33,15 @@ Route::get('/members/{member}', [MemberController::class, 'show'])
     ->name('members.show')
     ->middleware('count.popularity');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::view('/others', 'others.index', [
-    'links' => [
-        ['title' => '櫻坂46のデータベースサイトです。', 'url' => 'https://x.gd/edKLP'],
-    ]
-])->name('others.index');
+// Route::view('/others', 'others.index', [
+//     'links' => [
+//         ['title' => '櫻坂46のデータベースサイトです。', 'url' => 'https://x.gd/edKLP'],
+//     ]
+// ])->name('others.index');
 
-Route::get('/popular', [PopularController::class, 'index'])->name('popular.index');
+// Route::get('/popular', [PopularController::class, 'index'])->name('popular.index');
 
+Route::view('/data', 'data.index')->name('data.index');
 Route::get('/youtube/ranking', [\App\Http\Controllers\YoutubeRankingController::class, 'index'])->name('youtube.ranking');
 
 //認証関係

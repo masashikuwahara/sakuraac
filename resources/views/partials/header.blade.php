@@ -41,11 +41,6 @@
       </button>
 
       <!-- メニュー項目 -->
-      {{-- <ul class="flex flex-col space-y-6 text-xl">
-        <li><a href="{{ route('members.index') }}" class="hover:text-blue-600">メンバー一覧</a></li>
-        <li><a href="{{ route('songs.index') }}" class="hover:text-blue-600">楽曲一覧</a></li>
-        <li><a href="{{ route('popular.index') }}" class="hover:text-blue-600">人気ページTOP20</a></li>
-      </ul> --}}
       <ul class="flex flex-col space-y-8 text-3xl font-bold">
         <li 
           x-show="open"
@@ -74,6 +69,20 @@
             楽曲一覧
           </a>
         </li>
+
+        <li 
+          x-show="open"
+          x-transition:enter="transition ease-out duration-500 delay-200"
+          x-transition:enter-start="opacity-0 translate-y-4"
+          x-transition:enter-end="opacity-100 translate-y-0"
+        >
+          <a 
+            href="{{ route('songs.index') }}" 
+            class="px-4 py-2 bg-pink-100 rounded-xl hover:bg-pink-200 hover:text-pink-700 transition"
+          >
+            データいろいろ
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -83,17 +92,17 @@
     <ul class="flex space-x-6 text-lg">
       <li><a href="{{ route('members.index') }}" class="hover:underline">メンバー一覧</a></li>
       <li><a href="{{ route('songs.index') }}" class="hover:underline">楽曲一覧</a></li>
-      {{-- <li><a href="{{ route('popular.index') }}" class="hover:underline">人気ページTOP20</a></li>
-      <li><a href="{{ route('others.index') }}" class="hover:underline">その他</a></li> --}}
+      <li><a href="{{ route('data.index') }}" class="hover:underline">データいろいろ</a></li>
+      {{-- <li><a href="{{ route('others.index') }}" class="hover:underline">その他</a></li> --}}
     </ul>
   </nav>
 </header>
-{{-- <div class="bg-[#a78bfa] text-white py-0 w-full text-center">
-  <a href="{{ route('youtube.ranking') }}" class="hover:text-blue-800 font-semibold">
-    櫻坂ちゃんねる集計試験運用開始しました
+<div class="bg-[#a78bfa] text-white py-0 w-full text-center">
+  <a href="https://sakurachoice4th.netlify.app/" target="_blank" class="hover:text-blue-800 font-semibold">
+    四期生推しメン診断アプリできました！
   </a>
 </div>
-<div class="bg-[#4ade80] text-white py-0 w-full text-center">
+{{-- <div class="bg-[#4ade80] text-white py-0 w-full text-center">
   <a href="{{ route('popular.index') }}" class="hover:text-blue-800 font-semibold">
     人気ページTOP20試験運用開始しました
   </a>

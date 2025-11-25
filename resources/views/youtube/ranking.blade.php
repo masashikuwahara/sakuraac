@@ -53,12 +53,12 @@
   <h1 class="text-2xl font-bold">櫻坂ちゃんねる人気動画ランキング【最新】</h1>
   <p class="text-sm text-gray-600 mt-1">櫻坂46公式YouTubeチャンネル「櫻坂ちゃんねる」の人気動画を再生数順に紹介。</p>
   <div class="flex gap-4 mb-8">
-    <button class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition scroll-btn" data-target="joui">上位一覧へ</button>
-    <button class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition scroll-btn" data-target="saishin">新着動画へ</button>
+    <button class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 transition scroll-btn" data-target="joui">上位一覧へ</button>
+    <button class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 transition scroll-btn" data-target="saishin">新着動画へ</button>
   </div>
 
   {{-- グラフ（上位10件） --}}
-  <section class="mt-6 bg-white p-4 shadow rounded">
+  <section class="mt-6 bg-white p-4 shadow ">
     <h2 class="text-lg font-semibold">櫻坂ちゃんねる 再生数トップ10</h2>
     <canvas id="viewsChart" class="mt-4" height="240" aria-label="再生数トップ10グラフ" role="img"></canvas>
   </section>
@@ -89,13 +89,13 @@
 
   <div class="grid md:grid-cols-2 gap-4">
     <template x-for="(v, i) in sortedVideos()" :key="v.video_id">
-      <article class="bg-white shadow rounded p-3 flex items-start hover:shadow-md transition-shadow duration-200">
+      <article class="bg-white shadow p-3 flex items-start hover:shadow-md transition-shadow duration-200">
         <a :href="`https://www.youtube.com/watch?v=${v.video_id}`" target="_blank" rel="noopener">
           <img :src="v.thumbnail_url"
                :alt="v.title"
                loading="lazy"
                width="192" height="108"
-               class="w-40 h-24 object-cover rounded">
+               class="w-40 h-24 object-cover">
 
         <div class="ml-3 flex-1">
           <a :href="`https://www.youtube.com/watch?v=${v.video_id}`" target="_blank" rel="noopener" 
@@ -118,8 +118,8 @@
       Alpine.data('videoRanking', () => ({
         sortBy: 'views',
         videos: @json($videosTopViews),
-        baseClass: 'bg-gray-200 text-gray-700 px-4 py-1.5 rounded-full text-sm hover:bg-gray-300 transition-colors',
-        activeClass: 'bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm shadow-md',
+        baseClass: 'bg-gray-200 text-gray-700 px-4 py-1.5 text-sm hover:bg-gray-300 transition-colors',
+        activeClass: 'bg-blue-600 text-white px-4 py-1.5 text-sm shadow-md',
         
         formatDate(dateStr) {
           if (!dateStr) return '不明'
@@ -181,9 +181,9 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
       @foreach ($latest as $v)
         <a href="{{ $v->watch_url }}" target="_blank" rel="noopener"
-           class="bg-white shadow rounded p-2 block hover:scale-105 transition">
+           class="bg-white shadow p-2 block hover:scale-105 transition">
           <img src="{{ $v->thumbnail_url }}" alt="{{ $v->title }}"
-               class="w-full aspect-video object-cover rounded" loading="lazy">
+               class="w-full aspect-video object-cover" loading="lazy">
           <div class="mt-2 text-sm font-semibold line-clamp-2">{{ $v->title }}</div>
           <div class="text-xs text-gray-600">{{ optional($v->published_at)->format('Y/m/d') }}</div>
         </a>

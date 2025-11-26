@@ -10,8 +10,8 @@ class Member extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'furigana', 'birthday', 'constellation','height','blood_type','birthplace', 'nickname',
-    'grade','color1','colorname1','color2','colorname2','promotion_video','image','graduation','introduction','sns','blog_url'];
+    protected $fillable = ['name', 'furigana', 'birth', 'constellation','height','blood','birthplace', 'nickname',
+    'grade','color1','colorname1','color2','colorname2','promotion_video','image','graduation','introduction','sns','blog'];
 
     public function songs()
     {

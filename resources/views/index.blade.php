@@ -80,53 +80,80 @@
     <!-- メンバー一覧 -->
     <section class="mt-10 px-6">
         <h2 class="text-xl font-bold mb-4">メンバー</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-2">
             @foreach ($members as $member)
-                <div class="bg-white shadow-md  p-3 text-center hover:scale-105 transition-transform">
-                    <a href="{{ route('members.show', $member->id) }}">
-                        <img src="{{ asset('storage/images/' . $member->image) }}" 
-                        alt="{{ $member->name }}" 
-                        class="w-20 h-20 sm:w-32 sm:h-32 object-cover mx-auto"
-                        loading="lazy" width="128" height="128">
-                        <span class="mt-2 font-semibold">{{ $member->name }}
+                <div class="text-left">
+                    <a href="{{ route('members.show', $member->id) }}" class="block group">
+                        <!-- 画像部分：横幅いっぱい＋縦長ポートレート -->
+                        <div class="overflow-hidden">
+                            <img
+                                src="{{ asset('storage/images/' . $member->image) }}"
+                                alt="{{ $member->name }}"
+                                class="w-full aspect-[3/4] object-cover
+                                    transition-transform duration-300
+                                    group-hover:scale-105"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <!-- テキスト部分 -->
+                        <p class="mt-3 text-sm sm:text-base font-medium leading-tight">
+                            {{ $member->name }}
                             @if ($member->is_recently_updated)
-                            <span class="text-red-600 font-bold">NEW!</span>
+                                <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                             @endif
-                        </span>
+                        </p>
+                        {{-- ふりがなを持っている場合 --}}
+                        @isset($member->furigana)
+                            <p class="text-xs text-gray-500 mt-1">
+                                {{ $member->furigana }}
+                            </p>
+                        @endisset
                     </a>
                 </div>
             @endforeach
         </div>
     </section>
+
     <div class="flex items-center justify-center mt-5">
         <a href="{{ route('members.index') }}" 
             class="bg-[#f19db5] text-white text-lg font-semibold py-3 px-6  hover:bg-[#e488a6] transition-transform hover:scale-105">
             メンバー一覧をすべて見る
         </a>
     </div>
-    
+
     <!-- 楽曲一覧（グリッド表示） -->
     <section class="mt-10 px-6">
         <h2 class="text-xl font-bold mb-4">楽曲</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-2">
             @foreach ($songs as $song)
-                <div class="bg-white shadow-md  p-3 text-center hover:scale-105 transition-transform">
-                    <a href="{{ route('songs.show', $song->id) }}">
-                        <img src="{{ asset('storage/photos/' . $song->photo) }}" 
-                        alt="{{ $song->title }}" 
-                        class="w-20 h-20 sm:w-32 sm:h-32 object-cover  mx-auto"
-                        loading="lazy" width="128" height="128">
-                        <p class="mt-2 font-semibold">{{ $song->title }}</p>
-                        <span class="mt-2 font-semibold">
+                <div class="text-left">
+                    <a href="{{ route('songs.show', $song->id) }}" class="block group">
+                        <!-- 画像部分：横幅いっぱい＋縦長ポートレート -->
+                        <div class="overflow-hidden">
+                            <img
+                                src="{{ asset('storage/photos/' . $song->photo) }}"
+                                alt="{{ $song->title }}"
+                                class="w-full aspect-[4/4] object-cover
+                                    transition-transform duration-300
+                                    group-hover:scale-105"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <!-- テキスト部分 -->
+                        <p class="mt-3 text-sm sm:text-base font-medium leading-tight">
+                            {{ $song->title }}
                             @if ($song->is_recently_updated)
-                            <span class="text-red-600 font-bold">NEW!</span>
+                                <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                             @endif
-                        </span>
+                        </p>
                     </a>
                 </div>
             @endforeach
         </div>
     </section>
+
     <div class="flex items-center justify-center mt-5">
         <a href="{{ route('songs.index') }}" 
             class="bg-[#f19db5] text-white text-lg font-semibold py-3 px-6  hover:bg-[#e488a6] transition-transform hover:scale-105">

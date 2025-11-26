@@ -22,7 +22,7 @@
 
             {{-- YouTube人気動画 --}}
             <a href="{{ route('youtube.ranking') }}"
-                class="bg-white shadow-md p-4 text-center hover:scale-105 transition-transform rounded-lg block">
+                class="bg-white shadow-md p-4 text-center hover:scale-105 transition-transform block">
                 <div class="flex flex-col items-center">
                     <span class="text-lg font-semibold">櫻坂ちゃんねる人気動画ランキング</span>
                     <p class="text-xs text-gray-500 mt-1">櫻坂46公式YouTubeチャンネル「櫻坂ちゃんねる」の人気動画を再生数順に紹介</p>

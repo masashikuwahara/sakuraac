@@ -21,10 +21,10 @@ class MemberController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'nickname' => 'nullable|string|max:255',
-            'birthday' => 'nullable|date',
+            'birth' => 'nullable|date',
             'constellation' => 'nullable|string|max:255',
             'height' => 'nullable|numeric',
-            'blood_type' => 'nullable|string|max:255',
+            'blood' => 'nullable|string|max:255',
             'birthplace' => 'nullable|string|max:255',
             'grade' => 'nullable|string|max:255',
             'color1' => 'nullable|string|max:20',
@@ -33,6 +33,7 @@ class MemberController extends Controller
             'colorname2' => 'nullable|string|max:50',
             'promotion_video' => 'nullable|string|max:510',
             'introduction' => 'nullable|string',
+            'blog' => 'nullable|string',
             'sns' => 'nullable|url',
         ]);
 

@@ -24,7 +24,7 @@
         </div>
         <div class="mb-4">
             <label class="block font-bold mb-1">誕生日</label>
-            <input type="date" name="birthday" value="{{ old('birthday', $member->birthday) }}" class="w-full border rounded p-2" required>
+            <input type="date" name="birthday" value="{{ old('birthday', $member->birth) }}" class="w-full border rounded p-2" required>
         </div>
         <div class="mb-4">
             <label class="block font-bold mb-1">星座</label>
@@ -36,7 +36,7 @@
         </div>
         <div class="mb-4">
             <label class="block font-bold mb-1">血液型</label>
-            <input type="text" name="blood_type" value="{{ old('blood_type', $member->blood_type) }}" class="w-full border rounded p-2">
+            <input type="text" name="blood_type" value="{{ old('blood_type', $member->blood) }}" class="w-full border rounded p-2">
         </div>
         <div class="mb-4">
             <label class="block font-bold mb-1">出身地</label>
@@ -87,8 +87,8 @@
         <div class="mb-4">
             <label class="block font-bold mb-1">在籍or卒業</label>
             <select name="graduation" class="w-full border rounded p-2">
-                <option value="0" >在籍</option>
-                <option value="1" >卒業</option>
+                <option value="0" {{ old('graduation', $member->graduation) == 0 ? 'selected' : '' }}>在籍</option>
+                <option value="1" {{ old('graduation', $member->graduation) == 1 ? 'selected' : '' }}>卒業</option>
             </select>
         </div>
         <div class="mb-4">

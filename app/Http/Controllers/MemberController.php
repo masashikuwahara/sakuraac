@@ -92,74 +92,6 @@ class MemberController extends Controller
     return view('members.index', compact('currentMembers', 'graduatedMembers', 'sort', 'order'));
 }
 
-//     public function index(Request $request)
-// {
-//     $sort = $request->input('sort', 'default');
-//     $order = $request->input('order', 'desc');
-
-//     if ($sort === 'default') {
-//         // デフォルト: gradeごとに表示
-//         $currentMembers = Member::where('graduation', 0)->get()->groupBy('grade');
-//         $graduatedMembers = Member::where('graduation', 1)->get()->groupBy('grade');
-//     } else {
-//         $currentMembers = Member::where('graduation', 0)->orderBy($sort, $order)->get()->map(function ($member) use ($sort) {
-//             if ($sort === 'birth') {
-//                 $member->additional_info = \Carbon\Carbon::parse($member->birth)->format('Y年m月d日');
-//             } elseif ($sort === 'height') {
-//                 $member->additional_info = $member->height."cm";
-//             } elseif ($sort === 'furigana') {
-//                 $member->additional_info = $member->furigana;
-//             } elseif ($sort === 'birthplace') {
-//                 $member->additional_info = $member->birthplace;
-//             } elseif ($sort === 'songs') {
-//                 $member->additional_info = $member->songs;
-//             } elseif ($sort === 'titlesong') {
-//                 $member->additional_info = $member->titlesong;
-//             } elseif ($sort === 'center') {
-//                 $member->additional_info = $member->center;
-//             }
-//             return $member;
-//         });
-//         if ($sort === 'blood') {
-//             $currentMembers = Member::where('graduation', 0)
-//                 ->orderByRaw("FIELD(blood, 'A型', 'B型', 'O型', 'AB型', '不明')")
-//                 ->get()
-//                 ->map(function ($member) {
-//                     $member->additional_info = $member->blood;
-//                     return $member;
-//                 });
-//         }
-//         $graduatedMembers = Member::where('graduation', 1)->orderBy($sort, $order)->get()->map(function ($member) use ($sort) {
-//             if ($sort === 'birth') {
-//                 $member->additional_info = \Carbon\Carbon::parse($member->birth)->format('Y年m月d日');
-//             } elseif ($sort === 'height') {
-//                 $member->additional_info = $member->height."cm";
-//             } elseif ($sort === 'furigana') {
-//                 $member->additional_info = $member->furigana;
-//             } elseif ($sort === 'birthplace') {
-//                 $member->additional_info = $member->birthplace;
-//             } elseif ($sort === 'songs') {
-//                 $member->additional_info = $member->songs;
-//             } elseif ($sort === 'titlesong') {
-//                 $member->additional_info = $member->titlesong;
-//             } elseif ($sort === 'center') {
-//                 $member->additional_info = $member->center;
-//             }
-//             return $member;
-//         });
-//         if ($sort === 'blood') {
-//             $graduatedMembers = Member::where('graduation', 1)
-//                 ->orderByRaw("FIELD(blood, 'A型', 'B型', 'O型', 'AB型', '不明')")
-//                 ->get()
-//                 ->map(function ($member) {
-//                     $member->additional_info = $member->blood;
-//                     return $member;
-//                 });
-//         }
-//     }
-
-//     return view('members.index', compact('currentMembers', 'graduatedMembers', 'sort', 'order'));
-// }
     public function show($id)
     {
         $member = Member::with('songs')->findOrFail($id); // メンバー情報と参加楽曲を取得
@@ -183,18 +115,18 @@ class MemberController extends Controller
         // };
 
         // ブログ取得
-        if ($member->blog_url) {
+        if ($member->blog) {
             $client = new Client();
             try {
-                $response = $client->request('GET', $member->blog_url);
+                $response = $client->request('GET', $member->blog);
                 $html = $response->getBody()->getContents();
     
                 $crawler = new Crawler($html);
-                $title = $crawler->filter('.c-blog-article__title')->text();
-                $content = $crawler->filter('.c-blog-article__text')->text();
-                $time = $crawler->filter('.c-blog-article__date')->text();
+                $title = $crawler->filter('h3.title')->text();
+                $content = $crawler->filter('.lead')->text();
+                $time = $crawler->filter('.date')->text();
     
-                $blogHtml = "<a href='{$member->blog_url}' target='_blank' rel='noopener noreferrer'>{$time}&nbsp;{$title}</a>";
+                $blogHtml = "<a href='{$member->blog}' target='_blank' rel='noopener noreferrer'>{$time}&nbsp;{$title}&nbsp;{$content}</a>";
             } catch (\Exception $e) {
                 $blogHtml = 'ブログ情報の取得に失敗しました。';
             }

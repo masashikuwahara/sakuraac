@@ -89,7 +89,7 @@
                             <img
                                 src="{{ asset('storage/images/' . $member->image) }}"
                                 alt="{{ $member->name }}"
-                                class="w-full aspect-[3/4] object-cover
+                                class="w-full aspect-[4/5] object-cover
                                     transition-transform duration-300
                                     group-hover:scale-105"
                                 loading="lazy"
@@ -97,7 +97,7 @@
                         </div>
 
                         <!-- テキスト部分 -->
-                        <p class="mt-3 text-sm sm:text-base font-medium leading-tight">
+                        <p class="mt-2 text-sm sm:text-base font-medium leading-tight">
                             {{ $member->name }}
                             @if ($member->is_recently_updated)
                                 <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>

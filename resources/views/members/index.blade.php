@@ -197,20 +197,33 @@
                     @else
                         @foreach ($currentMembers as $grade => $members)
                             <h3 class="text-lg font-semibold mt-4">{{ $grade }}</h3>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-4">
                                 @foreach ($members as $member)
-                                    <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-                                        <a href="{{ route('members.show', $member->id) }}" class="block">
-                                            <img src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
-                                                 alt="{{ $member->name }}（櫻坂46）"
-                                                 class="w-32 h-32 object-cover mx-auto"
-                                                 loading="lazy"
-                                                 width="128" height="128"/>
-                                            <span class="mt-2 font-semibold">{{ $member->name }}
+                                    <div class="text-left">
+                                        <a href="{{ route('members.show', $member->id) }}" class="block group">
+                                            <div class="overflow-hidden">
+                                                <img
+                                                    src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                                    alt="{{ $member->name }}（櫻坂46）"
+                                                    class="w-full aspect-[1/1.25] max-w-[480px] object-cover
+                                                        transition-transform duration-300
+                                                        group-hover:scale-105"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <p class="mt-2 text-sm sm:text-base font-medium leading-tight">
+                                                {{ $member->name }}
                                                 @if ($member->is_recently_updated)
-                                                <span class="text-red-600 font-bold">NEW!</span>
+                                                    <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                                                 @endif
-                                            </span>
+                                            </p>
+
+                                            @isset($member->kana)
+                                                <p class="text-xs text-gray-500 mt-1">
+                                                    {{ $member->kana }}
+                                                </p>
+                                            @endisset
                                         </a>
                                     </div>
                                 @endforeach
@@ -229,19 +242,33 @@
                     @else
                         @foreach ($graduatedMembers as $grade => $members)
                             <h3 class="text-lg font-semibold mt-4">{{ $grade }}</h3>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-4">
                                 @foreach ($members as $member)
-                                    <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-                                        <a href="{{ route('members.show', $member->id) }}" class="block">
-                                            <img src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
-                                                 alt="{{ $member->name }}（櫻坂46）"
-                                                 class="w-32 h-32 object-cover mx-auto"
-                                                 loading="lazy"
-                                                 width="128" height="128"/>
-                                            <span class="mt-2 font-semibold">{{ $member->name }}</span>
-                                            @if ($member->is_recently_updated)
-                                            <span class="text-red-600 font-bold">NEW!</span>
-                                            @endif
+                                    <div class="text-left">
+                                        <a href="{{ route('members.show', $member->id) }}" class="block group">
+                                            <div class="overflow-hidden">
+                                                <img
+                                                    src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                                    alt="{{ $member->name }}（櫻坂46）"
+                                                    class="w-full aspect-[1/1.25] max-w-[480px] object-cover
+                                                        transition-transform duration-300
+                                                        group-hover:scale-105"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <p class="mt-2 text-sm sm:text-base font-medium leading-tight">
+                                                {{ $member->name }}
+                                                @if ($member->is_recently_updated)
+                                                    <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
+                                                @endif
+                                            </p>
+
+                                            @isset($member->kana)
+                                                <p class="text-xs text-gray-500 mt-1">
+                                                    {{ $member->kana }}
+                                                </p>
+                                            @endisset
                                         </a>
                                     </div>
                                 @endforeach
@@ -257,24 +284,33 @@
                 @if ($currentMembers->isEmpty())
                     <p class="mt-2 text-gray-700">在籍メンバーはいません。</p>
                 @else
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-4">
                         @foreach ($currentMembers as $member)
-                            <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-                                <a href="{{ route('members.show', $member->id) }}" class="block">
-                                    <img src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
-                                         alt="{{ $member->name }}（櫻坂46）"
-                                         class="w-32 h-32 object-cover mx-auto"
-                                         loading="lazy"
-                                         width="128" height="128"/>
-                                    <p class="mt-2 font-semibold">{{ $member->name }}</p>
-                                    @if (isset($member->additional_info))
-                                    <p class="text-sm text-gray-600">{{ $member->additional_info }}</p>
-                                    @endif
-                                    <span class="mt-2 font-semibold">
+                            <div class="text-left">
+                                <a href="{{ route('members.show', $member->id) }}" class="block group">
+                                    <div class="overflow-hidden">
+                                        <img
+                                            src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                            alt="{{ $member->name }}（櫻坂46）"
+                                            class="w-full aspect-[1/1.25] max-w-[480px] object-cover
+                                                transition-transform duration-300
+                                                group-hover:scale-105"
+                                            loading="lazy"
+                                        >
+                                    </div>
+
+                                    <p class="mt-2 text-sm sm:text-base font-medium leading-tight">
+                                        {{ $member->name }}
                                         @if ($member->is_recently_updated)
-                                        <span class="text-red-600 font-bold">NEW!</span>
+                                            <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                                         @endif
-                                    </span>
+                                    </p>
+
+                                    @if (isset($member->additional_info))
+                                        <p class="text-xs text-gray-500 mt-1">
+                                            {{ $member->additional_info }}
+                                        </p>
+                                    @endif
                                 </a>
                             </div>
                         @endforeach
@@ -287,18 +323,29 @@
                 @if ($graduatedMembers->isEmpty())
                     <p class="mt-2 text-gray-700">卒業メンバーはいません。</p>
                 @else
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-4">
                         @foreach ($graduatedMembers as $member)
-                            <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-                                <a href="{{ route('members.show', $member->id) }}" class="block">
-                                    <img src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
-                                        alt="{{ $member->name }}（櫻坂46）"
-                                        class="w-32 h-32 object-cover mx-auto"
-                                        loading="lazy"
-                                        width="128" height="128"/>
-                                    <p class="mt-2 font-semibold">{{ $member->name }}</p>
+                            <div class="text-left">
+                                <a href="{{ route('members.show', $member->id) }}" class="block group">
+                                    <div class="overflow-hidden">
+                                        <img
+                                            src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                            alt="{{ $member->name }}（櫻坂46）"
+                                            class="w-full aspect-[1/1.25] max-w-[480px] object-cover
+                                                transition-transform duration-300
+                                                group-hover:scale-105"
+                                            loading="lazy"
+                                        >
+                                    </div>
+
+                                    <p class="mt-2 text-sm sm:text-base font-medium leading-tight">
+                                        {{ $member->name }}
+                                    </p>
+
                                     @if (isset($member->additional_info))
-                                    <p class="text-sm text-gray-600">{{ $member->additional_info }}</p>
+                                        <p class="text-xs text-gray-500 mt-1">
+                                            {{ $member->additional_info }}
+                                        </p>
                                     @endif
                                 </a>
                             </div>

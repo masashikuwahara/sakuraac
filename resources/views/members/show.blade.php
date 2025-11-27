@@ -89,7 +89,7 @@
             <div class="flex-shrink-0">
                 <img src="{{ asset('storage/images/' . $member->image) }}" 
                      alt="{{ $member->name }} （櫻坂46）" 
-                     class="w-56 h-72 object-cover shadow-md"
+                     class="w-56 h-72 md:w-80 md:h-[28rem] object-cover shadow-md"
                      loading="lazy"
                      width="384" height="512"
                      />
@@ -141,7 +141,7 @@
         </section>
 
         {{-- 公式ブログ --}}
-        @if (!empty($member->blog_url))
+        @if (!empty($member->blog))
             <section class="flex flex-col md:flex-row items-start mt-8 bg-[#fcf3f6] p-6 shadow-md">
                 <h2 class="text-xl font-bold mb-4 md:mb-0 md:mr-4 md:flex-none">公式ブログ</h2>
                 <div class="mt-2 text-blue-700 font-semibold hover:text-indigo-600 md:mt-0 md:flex-1">

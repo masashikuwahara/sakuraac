@@ -65,23 +65,33 @@
     {{-- 表題曲 --}}
     <section class="mt-6">
       <h2 class="text-xl font-bold text-gray-800">表題曲</h2>
+
       @if ($singles->isEmpty())
         <p class="mt-2 text-gray-700">表題曲はまだありません。</p>
       @else
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-2">
           @foreach ($singles as $song)
-            <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-              <a href="{{ route('songs.show', $song->id) }}" class="block">
-                <img src="{{ asset('storage/photos/' . ($song->photo ?? 'default.jpg')) }}"
-                     alt="{{ $song->title }}（櫻坂46）"
-                     class="w-20 h-20 sm:w-32 sm:h-32 object-cover mx-auto"
-                     loading="lazy" width="128" height="128">
-                <p class="mt-2 font-semibold">{{ $song->title }}</p>
-                <span class="mt-2 font-semibold">
+            <div class="text-left">
+              <a href="{{ route('songs.show', $song->id) }}" class="block group">
+
+                <div class="overflow-hidden">
+                  <img
+                    src="{{ asset('storage/photos/' . ($song->photo ?? 'default.jpg')) }}"
+                    alt="{{ $song->title }}（櫻坂46）"
+                    class="w-full aspect-[4/4] object-cover
+                          transition-transform duration-300
+                          group-hover:scale-105"
+                    loading="lazy"
+                  >
+                </div>
+
+                <p class="mt-3 text-sm sm:text-base font-medium leading-tight">
+                  {{ $song->title }}
                   @if ($song->is_recently_updated)
-                    <span class="text-red-600 font-bold">NEW!</span>
+                    <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                   @endif
-                </span>
+                </p>
+
               </a>
             </div>
           @endforeach
@@ -95,20 +105,29 @@
       @if ($albums->isEmpty())
         <p class="mt-2 text-gray-700">アルバム収録曲はまだありません。</p>
       @else
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
-          @foreach ($albums as $album)
-            <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-              <a href="{{ route('songs.show', $album->id) }}" class="block">
-                <img src="{{ asset('storage/photos/' . ($album->photo ?? 'default.jpg')) }}"
-                     alt="{{ $album->title }}（櫻坂46）"
-                     class="w-20 h-20 sm:w-32 sm:h-32 object-cover mx-auto"
-                     loading="lazy" width="128" height="128">
-                <p class="mt-2 font-semibold">{{ $album->title }}</p>
-                <span class="mt-2 font-semibold">
-                  @if ($album->is_recently_updated)
-                    <span class="text-red-600 font-bold">NEW!</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-2">
+          @foreach ($albums as $song)
+            <div class="text-left">
+              <a href="{{ route('songs.show', $song->id) }}" class="block group">
+
+                <div class="overflow-hidden">
+                  <img
+                    src="{{ asset('storage/photos/' . ($song->photo ?? 'default.jpg')) }}"
+                    alt="{{ $song->title }}（櫻坂46）"
+                    class="w-full aspect-[4/4] object-cover
+                          transition-transform duration-300
+                          group-hover:scale-105"
+                    loading="lazy"
+                  >
+                </div>
+
+                <p class="mt-3 text-sm sm:text-base font-medium leading-tight">
+                  {{ $song->title }}
+                  @if ($song->is_recently_updated)
+                    <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                   @endif
-                </span>
+                </p>
+
               </a>
             </div>
           @endforeach
@@ -119,29 +138,40 @@
     {{-- c/w・その他 --}}
     <section class="mt-8">
       <h2 class="text-xl font-bold text-gray-800">c/w・その他</h2>
+
       @if ($others->isEmpty())
         <p class="mt-2 text-gray-700">c/wやその他の楽曲はまだありません。</p>
       @else
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mt-2">
           @foreach ($others as $song)
-            <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-              <a href="{{ route('songs.show', $song->id) }}" class="block">
-                <img src="{{ asset('storage/photos/' . ($song->photo ?? 'default.jpg')) }}"
-                     alt="{{ $song->title }}（櫻坂46）"
-                     class="w-20 h-20 sm:w-32 sm:h-32 object-cover mx-auto"
-                     loading="lazy" width="128" height="128">
-                <p class="mt-2 font-semibold">{{ $song->title }}</p>
-                <span class="mt-2 font-semibold">
+            <div class="text-left">
+              <a href="{{ route('songs.show', $song->id) }}" class="block group">
+
+                <div class="overflow-hidden">
+                  <img
+                    src="{{ asset('storage/photos/' . ($song->photo ?? 'default.jpg')) }}"
+                    alt="{{ $song->title }}（櫻坂46）"
+                    class="w-full aspect-[4/4] object-cover
+                          transition-transform duration-300
+                          group-hover:scale-105"
+                    loading="lazy"
+                  >
+                </div>
+
+                <p class="mt-3 text-sm sm:text-base font-medium leading-tight">
+                  {{ $song->title }}
                   @if ($song->is_recently_updated)
-                    <span class="text-red-600 font-bold">NEW!</span>
+                    <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                   @endif
-                </span>
+                </p>
+
               </a>
             </div>
           @endforeach
         </div>
       @endif
     </section>
+
   </main>
   {{-- トップに戻るボタン --}}
   <button id="back-to-top" title="トップへ戻る">TOP</button>

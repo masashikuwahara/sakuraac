@@ -4,9 +4,9 @@
 @section('meta_description', Str::limit(strip_tags($member->bio ?? $member->name.'のプロフィール'), 120))
 
 @push('head_meta')
-  @section('og_title', $member->name . ' | SAKURAAC')
+  @section('og_title', $member->name . ' | SAKURA DATA 46')
   @section('og_description', Str::limit(strip_tags($member->bio ?? ($member->name.'のプロフィール')), 120))
-  @section('og_image', $member->image_url ?? asset('storage/' . $member->image) ?? 'https://kasumizaka46.com/storage/images/logo.png')
+  @section('og_image', $member->image_url ?? asset('storage/' . $member->image) ?? 'https://sakurazaka46.live/storage/images/logo.png')
   <meta property="og:type" content="profile">
   <meta property="profile:username" content="{{ $member->name }}">
   <meta property="og:image:width" content="1200">
@@ -36,26 +36,26 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "{{ $member->name }} - 櫻坂46プロフィール | 櫻坂46データベース | SAKURAAC",
+    "name": "{{ $member->name }} - 櫻坂46プロフィール | 櫻坂46データベース | SAKURA DATA 46",
     "url": "{{ url()->current() }}",
     "mainEntity": {
       "@type": "Person",
       "name": "{{ $member->name }}",
       "url": "{{ url()->current() }}"
     },
-    "isPartOf": { "@type": "WebSite", "name": "SAKURAAC", "url": "{{ url('/') }}" }
+    "isPartOf": { "@type": "WebSite", "name": "SAKURA DATA 46", "url": "{{ url('/') }}" }
   }
   </script>
 @endpush
 
-@section('og_title', $member->name . ' | SAKURAAC')
+@section('og_title', $member->name . ' | SAKURA DATA 46')
 @section('og_description', Str::limit(strip_tags($member->bio ?? ($member->name.'のプロフィール')), 120))
 @section('og_image', asset('storage/' . $member->image))
 @push('head_meta')
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 @endpush
-@section('og_image', $member->image_url ?? 'https://kasumizaka46.com/storage/images/logo.png')
+@section('og_image', $member->image_url ?? 'https://sakurazaka46.live/storage/images/logo.png')
 
 @section('content')
 <nav class="text-sm text-gray-600 mt-4" aria-label="パンくず">

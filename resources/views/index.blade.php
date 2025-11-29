@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
-@section('title', '櫻坂46データベース | SAKURA ACCUMULATION - メンバー・楽曲のプロフィールとデータ')
+@section('title', '櫻坂46データベース | SAKURA DATA 46 - メンバー・楽曲のプロフィールとデータ')
 
 @section('content')
     <section class="text-center mt-8">
-        <h1 class="text-2xl font-bold mb-2">櫻坂46データベース SAKURA ACCUMULATION</h1>
+        <h1 class="text-2xl font-bold mb-2">櫻坂46データベース SAKURA DATA 46</h1>
         <p class="text-base leading-relaxed">
-            櫻坂46データベース「SAKURA ACCUMULATION」では、メンバーのプロフィールやあだ名、生年月日、血液型、身長などの詳細情報に加え、<br>
+            櫻坂46データベース「SAKURA DATA 46」では、メンバーのプロフィールやあだ名、生年月日、血液型、身長などの詳細情報に加え、<br>
             楽曲データ（シングル・アルバム・参加メンバー・センター回数・作詞作曲者）をわかりやすく整理しています。<br>
             最新のシングル情報や卒業メンバーのデータも日々更新中です。
         </p>

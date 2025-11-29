@@ -1,17 +1,17 @@
 @extends('layouts.main')
 
-@section('title', 'SAKURA ACCUMULATION人気ページTOP20')
+@section('title', 'SAKURA DATA 46人気ページTOP20')
 @push('head_meta')
-  <meta name="description" content="SAKURA ACCUMULATIONで今人気のメンバー・楽曲ページTOP20。直近の閲覧データをもとにしたランキングを毎日更新。気になるプロフィールや楽曲情報にすぐアクセスできます。">
+  <meta name="description" content="SAKURA DATA 46で今人気のメンバー・楽曲ページTOP20。直近の閲覧データをもとにしたランキングを毎日更新。気になるプロフィールや楽曲情報にすぐアクセスできます。">
   <link rel="canonical" href="{{ url()->current() }}">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "人気ページTOP20 | SAKURA ACCUMULATION",
+    "name": "人気ページTOP20 | SAKURA DATA 46",
     "url": "{{ url()->current() }}",
-    "isPartOf": { "@type": "WebSite", "name": "SAKURA ACCUMULATION", "url": "{{ url('/') }}" },
+    "isPartOf": { "@type": "WebSite", "name": "SAKURA DATA 46", "url": "{{ url('/') }}" },
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": [

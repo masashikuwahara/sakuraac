@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'データ一覧・統計 | SAKURAAC')
-@section('meta_description', '櫻坂46データベースSAKURAACの各種データページへのリンク集です。メンバー一覧、楽曲一覧、検索、YouTube人気動画ランキングなどにアクセスできます。')
+@section('title', 'データ一覧・統計 | SAKURA DATA 46')
+@section('meta_description', '櫻坂46データベースSAKURA DATA 46の各種データページへのリンク集です。メンバー一覧、楽曲一覧、検索、YouTube人気動画ランキングなどにアクセスできます。')
 
 @section('content')
 <div class="max-w-5xl mx-auto px-4 py-10">
@@ -10,8 +10,8 @@
     </h1>
 
     <p class="text-gray-700 mb-8">
-        SAKURAACで公開している、櫻坂46に関する各種データページへのリンク集です。  
-        YouTubeランキングなど、ここからアクセスできます。
+        SAKURA DATA 46で公開している、櫻坂46に関する各種データページへのリンク集です。  
+        今後増やしていく予定です。
     </p>
 
     {{-- 公開データ --}}
@@ -43,57 +43,5 @@
         </ul>
     </section> --}}
 
-    {{-- 管理者向けリンク（ログイン時のみ表示） --}}
-    {{-- @auth
-        <section class="mb-4">
-            <h2 class="text-xl font-semibold mb-4">管理用データ（ログインユーザーのみ）</h2>
-
-            <div class="grid gap-4 md:grid-cols-2">
-                <a href="{{ route('admin.index') }}"
-                   class="block border rounded-lg p-5 bg-gray-50 hover:bg-gray-100 transition">
-                    <h3 class="text-lg font-semibold mb-1">管理ダッシュボード</h3>
-                    <p class="text-sm text-gray-600">
-                        サイト全体の管理メニューへ移動します。
-                    </p>
-                    <p class="mt-2 text-xs text-gray-500">
-                        ルート: <code>admin.index</code> / URL: <code>/admin</code>
-                    </p>
-                </a>
-
-                <a href="{{ route('admin.members') }}"
-                   class="block border rounded-lg p-5 bg-gray-50 hover:bg-gray-100 transition">
-                    <h3 class="text-lg font-semibold mb-1">メンバー情報管理</h3>
-                    <p class="text-sm text-gray-600">
-                        メンバープロフィールや画像、スキルなどの管理を行います。
-                    </p>
-                    <p class="mt-2 text-xs text-gray-500">
-                        ルート: <code>admin.members</code> / URL: <code>/admin/members</code>
-                    </p>
-                </a>
-
-                <a href="{{ route('admin.songs') }}"
-                   class="block border rounded-lg p-5 bg-gray-50 hover:bg-gray-100 transition">
-                    <h3 class="text-lg font-semibold mb-1">楽曲情報管理</h3>
-                    <p class="text-sm text-gray-600">
-                        楽曲データ・フォーメーション情報などの管理を行います。
-                    </p>
-                    <p class="mt-2 text-xs text-gray-500">
-                        ルート: <code>admin.songs</code> / URL: <code>/admin/songs</code>
-                    </p>
-                </a>
-
-                <a href="{{ route('admin.changelogs.index') }}"
-                   class="block border rounded-lg p-5 bg-gray-50 hover:bg-gray-100 transition">
-                    <h3 class="text-lg font-semibold mb-1">更新履歴管理</h3>
-                    <p class="text-sm text-gray-600">
-                        サイトの更新履歴（リリースノート）を登録・管理します。
-                    </p>
-                    <p class="mt-2 text-xs text-gray-500">
-                        ルート: <code>admin.changelogs.index</code> / URL: <code>/admin/changelogs</code>
-                    </p>
-                </a>
-            </div>
-        </section>
-    @endauth --}}
 </div>
 @endsection

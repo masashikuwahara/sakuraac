@@ -14,9 +14,9 @@
 {
   "@context":"https://schema.org",
   "@type":"CollectionPage",
-  "name":"櫻坂46楽曲一覧 | HINABASE",
+  "name":"櫻坂46楽曲一覧 | SAKURA DATA 46",
   "url":"{{ request()->fullUrl() }}",
-  "isPartOf":{"@type":"WebSite","name":"HINABASE","url":"{{ url('/') }}"},
+  "isPartOf":{"@type":"WebSite","name":"SAKURA DATA 46","url":"{{ url('/') }}"},
   "mainEntity":{
     "@type":"ItemList",
     "itemListElement":[

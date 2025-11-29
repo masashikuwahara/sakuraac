@@ -2,7 +2,7 @@
 
 @section('title', $song->title . ' - 櫻坂46の楽曲情報')
 @section('og_description', Str::limit(strip_tags($song->description ?? $song->title.'の情報'), 120))
-@section('og_image', $song->photo ?? 'https://kasumizaka46.com/storage/images/logo.png')
+@section('og_image', $song->photo ?? 'https://sakurazaka46.live/storage/images/logo.png')
 @push('head_meta')
 
 <meta property="og:type" content="music.song">
@@ -103,9 +103,9 @@
 </style>
 @endpush
 
-@section('og_title', $song->title . ' | SAKURAAC')
+@section('og_title', $song->title . ' | SAKURA DATA 46')
 @section('og_description', Str::limit(strip_tags($song->description ?? $song->title.'の情報'), 120))
-@section('og_image', $song->jacket_image_url ?? 'https://kasumizaka46.com/storage/images/logo.png')
+@section('og_image', $song->jacket_image_url ?? 'https://sakurazaka46.live/storage/images/logo.png')
 
 @section('content')
 <nav class="text-sm text-gray-600 mt-2" aria-label="パンくず">
@@ -173,6 +173,7 @@
                 <h3 class="text-xl font-bold text-gray-800 mb-4">参加メンバー（フォーメーション）</h3>
                 <p class="mt-4 text-gray-700">ただいま編集中です。今しばらくお待ちください。</p>
 
+                <!-- 編集後に↓を表示させる -->
                 {{-- <div class="space-y-4 text-center">
                     @foreach ($formation as $rowNumber => $members)
                         <div class="flex justify-center flex-wrap gap-3 md:gap-6 ">

@@ -26,9 +26,9 @@
     {
         "@context":"https://schema.org",
         "@type":"CollectionPage",
-        "name":"櫻坂46メンバー一覧 | 櫻坂46データベース | HINABASE",
+        "name":"櫻坂46メンバー一覧 | 櫻坂46データベース | SAKURA DATA 46",
         "url":"{{ request()->fullUrl() }}",
-        "isPartOf":{"@type":"WebSite","name":"HINABASE","url":"{{ url('/') }}"},
+        "isPartOf":{"@type":"WebSite","name":"SAKURA DATA 46","url":"{{ url('/') }}"},
         "mainEntity":{
             "@type":"ItemList",
             "itemListElement":[

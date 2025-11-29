@@ -1,25 +1,25 @@
 @extends('layouts.main')
 
-@section('title', '櫻坂ちゃんねる【公式】人気動画ランキング・最新再生数TOP | SAKURAAC')
+@section('title', '櫻坂ちゃんねる【公式】人気動画ランキング・最新再生数TOP | SAKURA DATA 46')
 @section('meta_description', '櫻坂46公式YouTube「櫻坂ちゃんねる」の人気動画ランキング。再生数・高評価数トップ50を毎日更新。最新動画・ショート動画・メンバー出演情報も掲載。')
 
 @push('head_meta')
 <meta property="og:type" content="website">
-<meta property="og:title" content="櫻坂ちゃんねる人気動画ランキング【最新】 | SAKURAAC">
+<meta property="og:title" content="櫻坂ちゃんねる人気動画ランキング【最新】 | SAKURA DATA 46">
 <meta property="og:description" content="櫻坂46公式YouTubeチャンネル「櫻坂ちゃんねる」の人気動画を再生数順に紹介。毎日自動更新中。">
 <meta property="og:image" content="{{ asset('storage/images/youtube-ranking-ogp.png') }}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@SAKURAAC_JP">
+<meta name="twitter:site" content="@SAKURA DATA 46_JP">
 <link rel="canonical" href="{{ url()->current() }}">
 
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
  "@type":"WebPage",
- "name":"櫻坂ちゃんねる人気動画ランキング | 櫻坂46 | SAKURAAC",
+ "name":"櫻坂ちゃんねる人気動画ランキング | 櫻坂46 | SAKURA DATA 46",
  "url":"{{ url()->current() }}",
  "description":"櫻坂46公式YouTube「櫻坂ちゃんねる」の人気動画ランキング。再生数・高評価数トップ50を毎日自動更新。",
- "isPartOf": { "@type": "WebSite", "name": "SAKURAAC", "url": "{{ url('/') }}" },
+ "isPartOf": { "@type": "WebSite", "name": "SAKURA DATA 46", "url": "{{ url('/') }}" },
  "breadcrumb": {
    "@type": "BreadcrumbList",
    "itemListElement": [

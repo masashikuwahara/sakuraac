@@ -90,7 +90,7 @@
     </style>
     @stack('head_meta')
 </head>
-<body class="bg-[#fff0f5] text-gray-800">
+<body class="bg-[#fffcfd] text-gray-800">
 
     @include('partials.header')
 

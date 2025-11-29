@@ -1,5 +1,5 @@
 <header class="bg-[#f19db5] text-white py-4 px-6 flex justify-between items-center">
-  <a href="{{ url('/') }}"><div class="text-2xl font-bold">SAKURAAC</div></a>
+  <a href="{{ url('/') }}"><div class="text-2xl font-bold">SAKURA DATA 46</div></a>
   <!-- ハンバーガーメニュー -->
   <div x-data="{ open: false }" x-init="$watch('open', v => document.body.classList.toggle('overflow-hidden', v))" class="relative">
 
@@ -50,7 +50,7 @@
         >
           <a 
             href="{{ route('members.index') }}" 
-            class="px-4 py-2 bg-blue-100 hover:bg-blue-200 hover:text-blue-700 transition"
+            class="px-4 py-2 bg-pink-100 hover:bg-pink-200 hover:text-pink-700 transition"
           >
             メンバー一覧
           </a>
@@ -64,7 +64,7 @@
         >
           <a 
             href="{{ route('songs.index') }}" 
-            class="px-4 py-2 bg-pink-100 hover:bg-pink-200 hover:text-pink-700 transition"
+            class="px-4 py-2 bg-rose-100 hover:bg-rose-200 hover:text-rose-700 transition"
           >
             楽曲一覧
           </a>
@@ -78,7 +78,7 @@
         >
           <a 
             href="{{ route('data.index') }}" 
-            class="px-4 py-2 bg-pink-100 hover:bg-pink-200 hover:text-pink-700 transition"
+            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 hover:text-slate-700 transition"
           >
             データいろいろ
           </a>
@@ -99,11 +99,11 @@
 </header>
 <div class="bg-[#a78bfa] text-white py-0 w-full text-center">
   <a href="https://sakurachoice4th.netlify.app/" target="_blank" class="hover:text-blue-800 font-semibold">
-    四期生推しメン診断アプリできました！
+    四期生の推しメンに迷う方はコチラ！
   </a>
 </div>
-{{-- <div class="bg-[#4ade80] text-white py-0 w-full text-center">
-  <a href="{{ route('popular.index') }}" class="hover:text-blue-800 font-semibold">
-    人気ページTOP20試験運用開始しました
+<div class="bg-[#4ade80] text-white py-0 w-full text-center">
+  <a href="{{ route('youtube.ranking') }}" class="hover:text-blue-800 font-semibold">
+    櫻坂ちゃんねる人気動画ランキング
   </a>
-</div> --}}
+</div>

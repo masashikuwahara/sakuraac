@@ -89,7 +89,7 @@
             <div class="flex-shrink-0">
                 <img src="{{ asset('storage/images/' . $member->image) }}" 
                      alt="{{ $member->name }} （櫻坂46）" 
-                     class="w-56 h-72 md:w-80 md:h-[28rem] object-cover shadow-md"
+                     class="w-56 h-72 md:w-96 md:h-[32rem] object-cover shadow-md"
                      loading="lazy"
                      width="384" height="512"
                      />

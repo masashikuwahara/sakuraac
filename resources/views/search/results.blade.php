@@ -62,7 +62,7 @@
             <div class="mt-2 flex justify-center" style="--acc:#e91e63;">
             @php $cat = old('category', request('category', 'members')); @endphp
 
-            <fieldset class="inline-flex rounded-full bg-white shadow-sm ring-1 ring-gray-200 overflow-hidden" role="radiogroup" aria-label="検索カテゴリ">
+            <fieldset class="inline-flex bg-white shadow-sm ring-1 ring-gray-200 overflow-hidden" role="radiogroup" aria-label="検索カテゴリ">
 
                 {{-- メンバー --}}
                 <label class="relative border-l border-gray-200">

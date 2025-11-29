@@ -82,8 +82,8 @@
 @endpush
     <!-- メンバー詳細 -->
     <main class="container mx-auto mt-8 px-4">
-        <h1 class="text-[2rem] text-[#c84e74] text-center mb-2 border-b-2 border-[#f19db5] pb-[0.3rem] font-bold">{{ $member->name }}</h1>
-        <p class="text-xl text-center mt-2">{{ $member->furigana }}</p>
+        <h1 class="text-[2rem] text-[#c84e74] mb-2 border-b-2 border-[#f19db5] pb-[0.3rem] font-bold">{{ $member->name }}</h1>
+        <p class="text-xl mt-2">{{ $member->furigana }}</p>
         
         <section class="flex flex-col md:flex-row items-center mt-8 bg-[#fcf3f6] p-6 shadow-md">
             <div class="flex-shrink-0">

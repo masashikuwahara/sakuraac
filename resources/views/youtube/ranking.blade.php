@@ -53,8 +53,8 @@
   <h1 class="text-2xl font-bold">櫻坂ちゃんねる人気動画ランキング【最新】</h1>
   <p class="text-sm text-gray-600 mt-1">櫻坂46公式YouTubeチャンネル「櫻坂ちゃんねる」の人気動画を再生数順に紹介。</p>
   <div class="flex gap-4 mb-8">
-    <button class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 transition scroll-btn" data-target="joui">上位一覧へ</button>
-    <button class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 transition scroll-btn" data-target="saishin">新着動画へ</button>
+    <button class="bg-pink-500 text-white px-4 py-2 hover:bg-pink-600 transition scroll-btn" data-target="joui">上位一覧へ</button>
+    <button class="bg-pink-500 text-white px-4 py-2 hover:bg-pink-600 transition scroll-btn" data-target="saishin">新着動画へ</button>
   </div>
 
   {{-- グラフ（上位10件） --}}
@@ -119,7 +119,7 @@
         sortBy: 'views',
         videos: @json($videosTopViews),
         baseClass: 'bg-gray-200 text-gray-700 px-4 py-1.5 text-sm hover:bg-gray-300 transition-colors',
-        activeClass: 'bg-blue-600 text-white px-4 py-1.5 text-sm shadow-md',
+        activeClass: 'bg-pink-600 text-white px-4 py-1.5 text-sm shadow-md',
         
         formatDate(dateStr) {
           if (!dateStr) return '不明'

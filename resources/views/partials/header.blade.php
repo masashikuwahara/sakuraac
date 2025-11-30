@@ -83,6 +83,20 @@
             データいろいろ
           </a>
         </li>
+
+        <li 
+          x-show="open"
+          x-transition:enter="transition ease-out duration-500 delay-200"
+          x-transition:enter-start="opacity-0 translate-y-4"
+          x-transition:enter-end="opacity-100 translate-y-0"
+        >
+          <a 
+            href="{{ route('others.index') }}" 
+            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 hover:text-slate-700 transition"
+          >
+            その他いろいろ
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -93,7 +107,7 @@
       <li><a href="{{ route('members.index') }}" class="hover:underline">メンバー一覧</a></li>
       <li><a href="{{ route('songs.index') }}" class="hover:underline">楽曲一覧</a></li>
       <li><a href="{{ route('data.index') }}" class="hover:underline">データいろいろ</a></li>
-      {{-- <li><a href="{{ route('others.index') }}" class="hover:underline">その他</a></li> --}}
+      <li><a href="{{ route('others.index') }}" class="hover:underline">その他いろいろ</a></li>
     </ul>
   </nav>
 </header>

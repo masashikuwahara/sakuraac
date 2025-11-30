@@ -33,11 +33,12 @@ Route::get('/members/{member}', [MemberController::class, 'show'])
     ->name('members.show')
     ->middleware('count.popularity');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
-// Route::view('/others', 'others.index', [
-//     'links' => [
-//         ['title' => '櫻坂46のデータベースサイトです。', 'url' => 'https://x.gd/edKLP'],
-//     ]
-// ])->name('others.index');
+Route::view('/others', 'others.index', [
+    'links' => [
+        ['title' => '姉妹サイトHINABASEです', 'url' => 'https://kasumizaka46.com/'],
+        ['title' => '四期生推しメン診断アプリ', 'url' => 'https://sakurachoice4th.netlify.app/'],
+    ]
+])->name('others.index');
 
 // Route::get('/popular', [PopularController::class, 'index'])->name('popular.index');
 

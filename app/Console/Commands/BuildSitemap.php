@@ -19,7 +19,7 @@ class BuildSitemap extends Command
         $urls[] = ['loc' => url('/'), 'lastmod' => now()->toAtomString()];
         $urls[] = ['loc' => url('/members'), 'lastmod' => now()->toAtomString()];
         $urls[] = ['loc' => url('/songs'), 'lastmod' => now()->toAtomString()];
-        // $urls[] = ['loc' => url('/others'), 'lastmod' => now()->toAtomString()];
+        $urls[] = ['loc' => url('/data'), 'lastmod' => now()->toAtomString()];
         // $urls[] = ['loc' => url('/popular'), 'lastmod' => now()->toAtomString()];
         // $urls[] = ['loc' => url('/youtube'), 'lastmod' => now()->toAtomString()];
 

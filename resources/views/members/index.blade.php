@@ -4,12 +4,12 @@
 @section('meta_description', '櫻坂46のメンバー一覧。プロフィール、あだ名、生年月日、身長、血液型、参加楽曲などのリンクを整理。期別の在籍メンバーと卒業メンバーを確認できます。')
 
 @push('head_meta')
-  @if(request('sort') || request('order'))
+  {{-- @if(request('sort') || request('order'))
     <meta name="robots" content="noindex,follow">
     <link rel="canonical" href="{{ route('members.index') }}">
   @else
     <link rel="canonical" href="{{ url()->current() }}">
-  @endif
+  @endif --}}
 
   @php
     $hasSort = request()->has('sort') || request()->has('order');

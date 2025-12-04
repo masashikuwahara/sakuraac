@@ -32,8 +32,8 @@ class MemberController extends Controller
             'colorname1' => 'nullable|string|max:50',
             'colorname2' => 'nullable|string|max:50',
             'promotion_video' => 'nullable|string|max:510',
-            'introduction' => 'nullable|string',
-            'blog' => 'nullable|string',
+            'introduction' => 'nullable|string|max:510',
+            'blog' => 'nullable|string|max:255',
             'sns' => 'nullable|url',
         ]);
 

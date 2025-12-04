@@ -97,7 +97,7 @@
         </div>
         <div class="mb-4">
             <label class="block font-bold mb-1">ブログ</label>
-            <input type="text" name="blog_url" value="{{ old('blog_url', $member->blog) }}" class="w-full border rounded p-2">
+            <input type="text" name="blog" value="{{ old('blog', $member->blog) }}" class="w-full border rounded p-2">
         </div>
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">更新</button>
     </form>

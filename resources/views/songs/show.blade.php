@@ -161,20 +161,20 @@
             <!-- 参加メンバー（フォーメーション表示） -->
             @if (!empty($song->members))
             @php
-                // pivot_row, pivot_positionを基準にソートしてグループ化
-                $formation = $song->members->sortBy([
-                    fn($m) => $m->pivot->row,
-                    fn($m) => $m->pivot->position
-                ])->groupBy('pivot.row');
+                $sorted = $song->members->sortByDesc('pivot.row');
+                $formation = $sorted
+                    ->groupBy('pivot.row')
+                    ->map(function ($rowMembers) {
+                        return $rowMembers->sortBy('pivot.position')->values();
+                    });
             @endphp
-
             <!-- 参加メンバー -->
             <section class="bg-white p-6 shadow-md mt-6">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">参加メンバー（フォーメーション）</h3>
-                <p class="mt-4 text-gray-700">ただいま編集中です。今しばらくお待ちください。</p>
+                {{-- <p class="mt-4 text-gray-700">ただいま編集中です。今しばらくお待ちください。</p> --}}
 
                 <!-- 編集後に↓を表示させる -->
-                {{-- <div class="space-y-4 text-center">
+                <div class="space-y-4 text-center">
                     @foreach ($formation as $rowNumber => $members)
                         <div class="flex justify-center flex-wrap gap-3 md:gap-6 ">
                             @foreach ($members as $member)
@@ -196,7 +196,7 @@
                             @endforeach
                         </div>
                     @endforeach
-                </div> --}}
+                </div>
             </section>
             @else
             <p class="mt-4 text-gray-700">この楽曲にはまだ参加メンバーが登録されていません。</p>

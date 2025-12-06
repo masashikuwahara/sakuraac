@@ -150,6 +150,31 @@
             </section>
         @endif
 
+        {{-- 同期メンバー --}}
+        @if(isset($sameGenMembers) && $sameGenMembers->isNotEmpty())
+            <section class="mt-8 bg-[#fcf3f6] p-6 shadow-md ">
+                <h2 class="text-xl font-semibold mb-4">
+                    同じ{{ $member->grade }}メンバー
+                </h2>
+                <ul class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                    @foreach($sameGenMembers as $mate)
+                        <li class="text-center">
+                            <a href="{{ route('members.show', $mate->id) }}" class="block hover:opacity-80">
+                                <img
+                                    src="{{ asset('storage/images/' . $mate->image) }}"
+                                    alt="{{ $mate->name }}"
+                                    class="w-20 h-20 sm:w-24 sm:h-24 object-cover mx-auto shadow"
+                                    loading="lazy"
+                                    width="96" height="96"
+                                >
+                                <span class="mt-2 text-sm font-bold block">{{ $mate->name }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </section>
+        @endif
+
         {{-- 個人PV --}}
         @if (!empty($member->promotion_video))
             <section class="bg-[#fcf3f6] p-6 shadow-md mt-6">

@@ -114,6 +114,12 @@ class MemberController extends Controller
         //     $radar = 50;
         // };
 
+        $sameGenMembers = Member::where('grade', $member->grade)
+        ->where('graduation', $member->graduation)
+        ->where('id', '!=', $member->id)
+        ->orderBy('furigana')
+        ->get();
+
         // ブログ取得
         if ($member->blog) {
             $client = new Client();
@@ -134,7 +140,14 @@ class MemberController extends Controller
             $blogHtml = 'ブログは終了しました。';
         }
 
-        return view('members.show', compact('member',  'centerCount','titlesongCount', 'songCount', 'blogHtml'));
-        // return view('members.show', compact('member',  'centerCount','titlesongCount', 'songCount', 'blogHtml', 'radarData', 'radar'));
+        // return view('members.show', compact('member',  'centerCount','titlesongCount', 'songCount', 'blogHtml'));
+        return view('members.show', compact(
+            'member',
+            'centerCount',
+            'titlesongCount',
+            'songCount',
+            'blogHtml',
+            'sameGenMembers'
+        ));
     }
 }

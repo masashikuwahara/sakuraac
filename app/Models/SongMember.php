@@ -9,7 +9,7 @@ class SongMember extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['song_id', 'member_id', 'is_center'];
+    protected $fillable = ['song_id', 'member_id', 'is_center', 'row', 'position'];
 
     public function member()
     {

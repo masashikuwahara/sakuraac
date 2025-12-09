@@ -4,18 +4,10 @@
 @section('meta_description', '櫻坂46のメンバー一覧。プロフィール、あだ名、生年月日、身長、血液型、参加楽曲などのリンクを整理。期別の在籍メンバーと卒業メンバーを確認できます。')
 
 @push('head_meta')
-  {{-- @if(request('sort') || request('order'))
-    <meta name="robots" content="noindex,follow">
-    <link rel="canonical" href="{{ route('members.index') }}">
-  @else
-    <link rel="canonical" href="{{ url()->current() }}">
-  @endif --}}
-
   @php
     $hasSort = request()->has('sort') || request()->has('order');
     $hasPage = (int)request('page') > 1;
   @endphp
-
   @if($hasSort)
     <meta name="robots" content="noindex,follow">
     <link rel="canonical" href="{{ route('members.index') }}">
@@ -219,9 +211,9 @@
                                                 @endif
                                             </p>
 
-                                            @isset($member->kana)
+                                            @isset($member->furigana)
                                                 <p class="text-xs text-gray-500 mt-1">
-                                                    {{ $member->kana }}
+                                                    {{ $member->furigana }}
                                                 </p>
                                             @endisset
                                         </a>
@@ -264,9 +256,9 @@
                                                 @endif
                                             </p>
 
-                                            @isset($member->kana)
+                                            @isset($member->furigana)
                                                 <p class="text-xs text-gray-500 mt-1">
-                                                    {{ $member->kana }}
+                                                    {{ $member->furigana }}
                                                 </p>
                                             @endisset
                                         </a>

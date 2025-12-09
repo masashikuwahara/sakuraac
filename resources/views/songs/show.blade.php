@@ -159,6 +159,8 @@
             @endif
             
             <!-- 参加メンバー（フォーメーション表示） -->
+            {{-- rowは前列から1->2->3
+            positionは左から1->2->3->の順 --}}
             @if (!empty($song->members))
             @php
                 $sorted = $song->members->sortByDesc('pivot.row');
@@ -172,7 +174,6 @@
             <section class="bg-white p-6 shadow-md mt-6">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">参加メンバー（フォーメーション）</h3>
                 {{-- <p class="mt-4 text-gray-700">ただいま編集中です。今しばらくお待ちください。</p> --}}
-
                 <!-- 編集後に↓を表示させる -->
                 <div class="space-y-4 text-center">
                     @foreach ($formation as $rowNumber => $members)

@@ -84,7 +84,6 @@
             @foreach ($members as $member)
                 <div class="text-left">
                     <a href="{{ route('members.show', $member->id) }}" class="block group">
-                        <!-- 画像部分：横幅いっぱい＋縦長ポートレート -->
                         <div class="overflow-hidden">
                             <img
                                 src="{{ asset('storage/images/' . $member->image) }}"
@@ -96,14 +95,12 @@
                             >
                         </div>
 
-                        <!-- テキスト部分 -->
                         <p class="mt-2 text-sm sm:text-base font-medium leading-tight">
                             {{ $member->name }}
                             @if ($member->is_recently_updated)
                                 <span class="ml-1 text-red-600 font-bold text-xs align-middle">NEW!</span>
                             @endif
                         </p>
-                        {{-- ふりがなを持っている場合 --}}
                         @isset($member->furigana)
                             <p class="text-xs text-gray-500 mt-1">
                                 {{ $member->furigana }}
@@ -129,7 +126,6 @@
             @foreach ($songs as $song)
                 <div class="text-left">
                     <a href="{{ route('songs.show', $song->id) }}" class="block group">
-                        <!-- 画像部分：横幅いっぱい＋縦長ポートレート -->
                         <div class="overflow-hidden">
                             <img
                                 src="{{ asset('storage/photos/' . $song->photo) }}"
@@ -266,5 +262,5 @@
         });
         })();
     </script>
-    <!-- v.2.1.0 -->
+    <!-- v.2.1.1 -->
 @endsection

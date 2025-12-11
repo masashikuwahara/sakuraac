@@ -92,7 +92,7 @@
         >
           <a 
             href="{{ route('others.index') }}" 
-            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 hover:text-slate-700 transition"
+            class="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 hover:text-zinc-700 transition"
           >
             その他いろいろ
           </a>

@@ -195,7 +195,7 @@
                                         <a href="{{ route('members.show', $member->id) }}" class="block group">
                                             <div class="overflow-hidden">
                                                 <img
-                                                    src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                                    src="{{ asset('storage/' . ($member->image ?? 'default.jpg')) }}"
                                                     alt="{{ $member->name }}（櫻坂46）"
                                                     class="w-full aspect-[1/1.25] max-w-[480px] object-cover
                                                         transition-transform duration-300
@@ -240,7 +240,7 @@
                                         <a href="{{ route('members.show', $member->id) }}" class="block group">
                                             <div class="overflow-hidden">
                                                 <img
-                                                    src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                                    src="{{ asset('storage/' . ($member->image ?? 'default.jpg')) }}"
                                                     alt="{{ $member->name }}（櫻坂46）"
                                                     class="w-full aspect-[1/1.25] max-w-[480px] object-cover
                                                         transition-transform duration-300
@@ -282,7 +282,7 @@
                                 <a href="{{ route('members.show', $member->id) }}" class="block group">
                                     <div class="overflow-hidden">
                                         <img
-                                            src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                            src="{{ asset('storage/' . ($member->image ?? 'default.jpg')) }}"
                                             alt="{{ $member->name }}（櫻坂46）"
                                             class="w-full aspect-[1/1.25] max-w-[480px] object-cover
                                                 transition-transform duration-300
@@ -321,7 +321,7 @@
                                 <a href="{{ route('members.show', $member->id) }}" class="block group">
                                     <div class="overflow-hidden">
                                         <img
-                                            src="{{ asset('storage/images/' . ($member->image ?? 'default.jpg')) }}"
+                                            src="{{ asset('storage/' . ($member->image ?? 'default.jpg')) }}"
                                             alt="{{ $member->name }}（櫻坂46）"
                                             class="w-full aspect-[1/1.25] max-w-[480px] object-cover
                                                 transition-transform duration-300

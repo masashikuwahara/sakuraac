@@ -87,7 +87,7 @@
         
         <section class="flex flex-col md:flex-row items-center mt-8 bg-[#fcf3f6] p-6 shadow-md">
             <div class="flex-shrink-0">
-                <img src="{{ asset('storage/images/' . $member->image) }}" 
+                <img src="{{ asset('storage/' . $member->image) }}" 
                      alt="{{ $member->name }} （櫻坂46）" 
                      class="w-56 h-72 md:w-96 md:h-[32rem] object-cover shadow-md"
                      loading="lazy"
@@ -161,7 +161,7 @@
                         <li class="text-center">
                             <a href="{{ route('members.show', $mate->id) }}" class="block hover:opacity-80">
                                 <img
-                                    src="{{ asset('storage/images/' . $mate->image) }}"
+                                    src="{{ asset('storage/' . $mate->image) }}"
                                     alt="{{ $mate->name }}"
                                     class="w-20 h-20 sm:w-24 sm:h-24 object-cover mx-auto shadow"
                                     loading="lazy"

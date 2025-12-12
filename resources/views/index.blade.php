@@ -86,7 +86,7 @@
                     <a href="{{ route('members.show', $member->id) }}" class="block group">
                         <div class="overflow-hidden">
                             <img
-                                src="{{ asset('storage/images/' . $member->image) }}"
+                                src="{{ asset('storage/' . $member->image) }}"
                                 alt="{{ $member->name }}"
                                 class="w-full aspect-[4/5] object-cover
                                     transition-transform duration-300
@@ -200,35 +200,60 @@
         const container = document.getElementById('recently-viewed');
         if (!container) return;
 
+        // const toImageUrl = (item) => {
+        //     let src = item?.image || '';
+        //     if (!src) return '';
+
+        //     src = src.replace(/\\/g, '/');
+
+        //     if (/^https?:\/\//i.test(src)) {
+        //     const u = new URL(src);
+        //     if (/^\/storage\/[^/]+\.(png|jpe?g|webp|gif|avif)$/i.test(u.pathname)) {
+        //         const folder = item?.type === 'member' ? 'images' : 'photos';
+        //         u.pathname = `/storage/${folder}/${u.pathname.split('/').pop()}`;
+        //         return u.toString();
+        //     }
+        //     return src;
+        //     }
+
+        //     if (/^\/storage\/[^/]+\.(png|jpe?g|webp|gif|avif)$/i.test(src)) {
+        //     const folder = item?.type === 'member' ? 'images' : 'photos';
+        //     const fname = src.split('/').pop();
+        //     return `/storage/${folder}/${fname}`;
+        //     }
+
+        //     if (/^\/storage\/(images|photos)\//i.test(src)) return src;
+
+        //     if (/^storage\/(images|photos)\//i.test(src)) return '/' + src;
+
+        //     const folder = item?.type === 'member' ? 'images' : 'photos';
+        //     return `/storage/${folder}/${src.replace(/^\/+/, '')}`;
+        // };
+
         const toImageUrl = (item) => {
-            let src = item?.image || '';
-            if (!src) return '';
+  let src = item?.image || '';
+  if (!src) return '';
 
-            src = src.replace(/\\/g, '/');
+  src = String(src).replace(/\\/g, '/');
 
-            if (/^https?:\/\//i.test(src)) {
-            const u = new URL(src);
-            if (/^\/storage\/[^/]+\.(png|jpe?g|webp|gif|avif)$/i.test(u.pathname)) {
-                const folder = item?.type === 'member' ? 'images' : 'photos';
-                u.pathname = `/storage/${folder}/${u.pathname.split('/').pop()}`;
-                return u.toString();
-            }
-            return src;
-            }
+  const isMember = String(item?.type || '').toLowerCase() === 'member';
 
-            if (/^\/storage\/[^/]+\.(png|jpe?g|webp|gif|avif)$/i.test(src)) {
-            const folder = item?.type === 'member' ? 'images' : 'photos';
-            const fname = src.split('/').pop();
-            return `/storage/${folder}/${fname}`;
-            }
+  // ✅ src から必ず「ファイル名」だけ抜き出す
+  const getFileName = (s) => {
+    // 完全URLでも相対でもOK
+    try {
+      if (/^https?:\/\//i.test(s)) s = new URL(s).pathname;
+    } catch (_) {}
+    return (s.split('/').pop() || '').trim();
+  };
 
-            if (/^\/storage\/(images|photos)\//i.test(src)) return src;
+  const fname = getFileName(src);
+  if (!fname) return '';
 
-            if (/^storage\/(images|photos)\//i.test(src)) return '/' + src;
+  // ✅ member は /storage/images/ に固定、song は /storage/photos/ に固定
+  return isMember ? `/storage/images/${fname}` : `/storage/photos/${fname}`;
+};
 
-            const folder = item?.type === 'member' ? 'images' : 'photos';
-            return `/storage/${folder}/${src.replace(/^\/+/, '')}`;
-        };
 
         const raw = localStorage.getItem(KEY);
         const list = raw ? JSON.parse(raw) : [];
@@ -262,5 +287,5 @@
         });
         })();
     </script>
-    <!-- v.2.1.1 -->
+    <!-- v.2.2.0 -->
 @endsection

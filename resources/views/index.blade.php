@@ -250,7 +250,6 @@
   const fname = getFileName(src);
   if (!fname) return '';
 
-  // ✅ member は /storage/images/ に固定、song は /storage/photos/ に固定
   return isMember ? `/storage/images/${fname}` : `/storage/photos/${fname}`;
 };
 
@@ -287,5 +286,5 @@
         });
         })();
     </script>
-    <!-- v.2.2.0 -->
+    <!-- v.2.3.0 -->
 @endsection

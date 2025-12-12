@@ -173,15 +173,14 @@
             <!-- 参加メンバー -->
             <section class="bg-white p-6 shadow-md mt-6">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">参加メンバー（フォーメーション）</h3>
-                <p class="mt-4 text-gray-700">ただいま編集中です。今しばらくお待ちください。</p>
-                <!-- 編集後に↓を表示させる -->
-                {{-- <div class="space-y-4 text-center">
+                <!-- <p class="mt-4 text-gray-700">ただいま編集中です。今しばらくお待ちください。</p> -->
+                <div class="space-y-4 text-center">
                     @foreach ($formation as $rowNumber => $members)
                         <div class="flex justify-center flex-wrap gap-3 md:gap-6 ">
                             @foreach ($members as $member)
                                 <div class="relative flex flex-col items-center w-12 sm:w-14 md:w-16 lg:w-20">
                                     <a href="{{ route('members.show', $member->id) }}" class="hover:opacity-80 transition">
-                                        <img src="{{ asset('storage/images/' . ($member->image ?? 'images/noimage.jpg')) }}"
+                                        <img src="{{ asset('storage/' . ($member->image ?? 'images/noimage.jpg')) }}"
                                             alt="{{ $member->name }}"
                                             class="w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20 object-cover border-2 border-gray-300 shadow">
                                     </a>
@@ -197,7 +196,7 @@
                             @endforeach
                         </div>
                     @endforeach
-                </div> --}}
+                </div>
             </section>
             @else
             <p class="mt-4 text-gray-700">この楽曲にはまだ参加メンバーが登録されていません。</p>

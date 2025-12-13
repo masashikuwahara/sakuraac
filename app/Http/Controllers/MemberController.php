@@ -140,7 +140,6 @@ class MemberController extends Controller
             $blogHtml = 'ブログは終了しました。';
         }
 
-        // return view('members.show', compact('member',  'centerCount','titlesongCount', 'songCount', 'blogHtml'));
         return view('members.show', compact(
             'member',
             'centerCount',

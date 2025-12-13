@@ -197,6 +197,7 @@
                         </div>
                     @endforeach
                 </div>
+                <p class="mt-4 text-xs">楽曲によってはモバイル時にレイアウトが崩れますので、PCのほうがいいかも、です</p>
             </section>
             @else
             <p class="mt-4 text-gray-700">この楽曲にはまだ参加メンバーが登録されていません。</p>
@@ -242,30 +243,5 @@
         localStorage.setItem(KEY, JSON.stringify(filtered.slice(0, 12)));
         })();
     </script>
-    {{-- <script>
-    (() => {
-    const item = {
-        type: 'song',
-        id: {{ $song->id }},
-        title: @json($song->title),
-        url: @json(route('songs.show', $song->id)),
-        image: @json($song->photo ? asset('storage/'.$song->photo) : null),
-        viewedAt: Date.now()
-    };
-
-    const KEY = 'recentlyViewed';
-    const MAX = 12;
-
-    const raw = localStorage.getItem(KEY);
-    let list = raw ? JSON.parse(raw) : [];
-
-    list = list.filter(x => !(x.type === item.type && x.id === item.id));
-    list.unshift(item);
-
-    if (list.length > MAX) list = list.slice(0, MAX);
-
-    localStorage.setItem(KEY, JSON.stringify(list));
-    })();
-    </script> --}}
 
 @endsection

@@ -200,59 +200,45 @@
         const container = document.getElementById('recently-viewed');
         if (!container) return;
 
-        // const toImageUrl = (item) => {
-        //     let src = item?.image || '';
-        //     if (!src) return '';
+        const toItemUrl = (item) => {
+            let url = item?.url || '';
 
-        //     src = src.replace(/\\/g, '/');
+            if (!url) return '/';
+            try {
+                if (/^https?:\/\//i.test(url)) url = new URL(url).pathname;
+            } catch (_) {}
 
-        //     if (/^https?:\/\//i.test(src)) {
-        //     const u = new URL(src);
-        //     if (/^\/storage\/[^/]+\.(png|jpe?g|webp|gif|avif)$/i.test(u.pathname)) {
-        //         const folder = item?.type === 'member' ? 'images' : 'photos';
-        //         u.pathname = `/storage/${folder}/${u.pathname.split('/').pop()}`;
-        //         return u.toString();
-        //     }
-        //     return src;
-        //     }
+            const type = String(item?.type || '').toLowerCase();
 
-        //     if (/^\/storage\/[^/]+\.(png|jpe?g|webp|gif|avif)$/i.test(src)) {
-        //     const folder = item?.type === 'member' ? 'images' : 'photos';
-        //     const fname = src.split('/').pop();
-        //     return `/storage/${folder}/${fname}`;
-        //     }
+            if (type === 'song') {
+                url = url.replace(/^\/members\//, '/songs/');
+            } else if (type === 'member') {
+                url = url.replace(/^\/songs\//, '/members/');
+            }
 
-        //     if (/^\/storage\/(images|photos)\//i.test(src)) return src;
-
-        //     if (/^storage\/(images|photos)\//i.test(src)) return '/' + src;
-
-        //     const folder = item?.type === 'member' ? 'images' : 'photos';
-        //     return `/storage/${folder}/${src.replace(/^\/+/, '')}`;
-        // };
+            return new URL(url, window.location.origin).toString();
+        };
 
         const toImageUrl = (item) => {
-  let src = item?.image || '';
-  if (!src) return '';
+        let src = item?.image || '';
+        if (!src) return '';
 
-  src = String(src).replace(/\\/g, '/');
+        src = String(src).replace(/\\/g, '/');
 
-  const isMember = String(item?.type || '').toLowerCase() === 'member';
+        const isMember = String(item?.type || '').toLowerCase() === 'member';
 
-  // ✅ src から必ず「ファイル名」だけ抜き出す
-  const getFileName = (s) => {
-    // 完全URLでも相対でもOK
-    try {
-      if (/^https?:\/\//i.test(s)) s = new URL(s).pathname;
-    } catch (_) {}
-    return (s.split('/').pop() || '').trim();
-  };
+        const getFileName = (s) => {
+            try {
+            if (/^https?:\/\//i.test(s)) s = new URL(s).pathname;
+            } catch (_) {}
+            return (s.split('/').pop() || '').trim();
+        };
 
-  const fname = getFileName(src);
-  if (!fname) return '';
+        const fname = getFileName(src);
+        if (!fname) return '';
 
-  return isMember ? `/storage/images/${fname}` : `/storage/photos/${fname}`;
-};
-
+        return isMember ? `/storage/images/${fname}` : `/storage/photos/${fname}`;
+        };
 
         const raw = localStorage.getItem(KEY);
         const list = raw ? JSON.parse(raw) : [];
@@ -269,7 +255,7 @@
             const img = item.image;
             return `
             <div class="bg-white shadow-md p-3 text-center hover:scale-105 transition-transform">
-                <a href="${item.url}">
+                <a href="${toItemUrl(item)}">
                 ${img ? `<img src="${img}" alt="${item.title}" width="128" height="128" loading="lazy"
                     class="w-20 h-20 sm:w-32 sm:h-32 object-cover mx-auto">` : ''}
                 <p class="mt-2 font-semibold">${item.title}</p>
@@ -286,5 +272,5 @@
         });
         })();
     </script>
-    <!-- v.2.3.0 -->
+    <!-- v.2.4.0 -->
 @endsection

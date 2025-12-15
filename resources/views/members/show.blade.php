@@ -46,6 +46,45 @@
     "isPartOf": { "@type": "WebSite", "name": "SAKURA DATA 46", "url": "{{ url('/') }}" }
   }
   </script>
+  <style>
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; 
+        height: 0;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+        .video-wrapper {
+            position: relative;
+            width: 80%;
+            padding-bottom: 45%;
+            height: 0;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    }
+</style>
 @endpush
 
 @section('og_title', $member->name . ' | SAKURA DATA 46')
@@ -177,12 +216,12 @@
 
         {{-- 個人PV --}}
         @if (!empty($member->promotion_video))
-            <section class="bg-[#fcf3f6] p-6 shadow-md mt-6">
-                <h3 class="text-xl font-bold text-gray-800">個人PV</h3>
-                <div class="mt-4 youtube-ratio">
+        <section class="bg-[#fcf3f6] p-6 shadow-md mt-6">
+            <h3 class="text-xl font-bold text-gray-800">個人PV</h3>
+            <div class="mt-4 video-wrapper">
                 {!! $member->promotion_video !!}
-                </div>
-            </section>
+            </div>
+        </section>
         @endif
             @push('head_meta')
                 @php

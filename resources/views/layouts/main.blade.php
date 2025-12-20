@@ -3,7 +3,7 @@
 <head>
     <meta name="description" content="@yield('meta_description', '櫻坂46のメンバー情報・楽曲データベースならSAKURA DATA 46。プロフィール、あだ名、フォーメーション、センター回数、作曲者情報まで網羅。最新シングルや卒業情報も随時更新中。')">
     <meta name="format-detection" content="email=no,telephone=no,address=no">
-    <meta name="google-site-verification" content="dgN96_4bDes1EkWctdSfcV04ySWa5zsXnT_F4Aki23Y" />
+    <meta name="google-site-verification" content="YQx8Z_eP-vtoIhUaPd9Vnx4F7jWZHRvrtjMde09QzUE" />
     <link rel="canonical" href="{{ url()->current() }}">
     <meta property="og:title" content="{{ trim($__env->yieldContent('og_title', $__env->yieldContent('title', 'SAKURA DATA 46'))) }}">
     <meta property="og:description" content="@yield('og_description', '櫻坂46のメンバー情報・楽曲データベースならSAKURA DATA 46。プロフィール、あだ名、フォーメーション、センター回数、作曲者情報まで網羅。最新シングルや卒業情報も随時更新中。')">

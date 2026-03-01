@@ -19,14 +19,14 @@ class SongController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'release' => 'required|date',
+            'release_date' => 'required|date',
             'lyricist' => 'nullable|string|max:255',
             'composer' => 'nullable|string|max:255',
             'arranger' => 'nullable|string|max:255',
             'is_recorded' => 'nullable|string|max:255',
             'lyric' => 'nullable|string|max:255',
             'titlesong' => 'required|boolean',
-            'youtube' => 'nullable|string|max:510',
+            'youtube' => 'nullable|string|max:1024',
         ]);
 
         $song->update($request->all());

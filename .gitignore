@@ -23,5 +23,3 @@ yarn-error.log
 /.zed
 storage/app/public/images/
 /database/seeders
-resources/views/auth
-resources/views/admin

@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $today = Carbon::now('Asia/Tokyo')->startOfDay();
 
-        $members = Member::inRandomOrder()->take(8)->get();
+        $members = Member::inRandomOrder()->where('graduation', 0)->take(8)->get();
 
         $songs = Song::inRandomOrder()->take(8)->get();
 

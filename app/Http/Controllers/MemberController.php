@@ -6,6 +6,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use Carbon\Carbon;
 
 class MemberController extends Controller
 {
@@ -94,10 +95,16 @@ class MemberController extends Controller
 
     public function show($id)
     {
-        $member = Member::with('songs')->findOrFail($id); // メンバー情報と参加楽曲を取得
+        $member = Member::with('songs')->findOrFail($id);
         $songCount = $member->songs->count();
-        $centerCount = $member->songs->where('pivot.is_center', true)->count(); // センター回数を取得
-        $titlesongCount = $member->songs->where('titlesong', 1)->count(); // 選抜回数を取得
+        $centerCount = $member->songs->where('pivot.is_center', true)->count();
+        $titlesongCount = $member->songs->where('titlesong', 1)->count();
+        $today = Carbon::now('Asia/Tokyo')->startOfDay();
+        $birthdayMembers = Member::query()
+            ->whereMonth('birth', $today->month)
+            ->whereDay('birth', $today->day)
+            ->orderBy('furigana')
+            ->get();
         // $radar = Member::with('skill')->find($id);
         
         // レーダーチャート用データ（例: 各スキル 100 点満点）
@@ -146,7 +153,8 @@ class MemberController extends Controller
             'titlesongCount',
             'songCount',
             'blogHtml',
-            'sameGenMembers'
+            'sameGenMembers',
+            'birthdayMembers'
         ));
     }
 }

@@ -187,6 +187,9 @@
             @if (!empty($alternateNames))
                 <p class="text-xl text-gray-600 mt-1">{{ implode(' / ', $alternateNames) }}</p>
             @endif
+            @if(isset($birthdayMembers))
+                <span class="text-[#f19db5] font-medium">🎂 本日お誕生日</span>
+            @endif
         </header>
 
         <section class="flex flex-col md:flex-row items-center mt-8 bg-[#fcf3f6] p-6 shadow-md" aria-labelledby="profile-heading">
